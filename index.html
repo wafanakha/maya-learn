@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cssreset.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -11,7 +12,25 @@
     <title>Maya-Learn</title>
   </head>
   <body>
-    <progress />
+    <nav>
+      <ul>
+        <li><img src="images/Logo.png" id="logo" alt="" /></li>
+        <li>
+          <input type="search" name="course-search" placeholder="cari kursus" />
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#">Semua Kursus</a></li>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><button class="outline" href="#">Masuk</button></li>
+        <li><button class="secondary">Daftar</button></li>
+      </ul>
+    </nav>
+    <div id="login-container">
+      <div id="image"></div>
+      <div class="login"></div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>
