@@ -1,0 +1,41 @@
+nav {
+  position: fixed;
+  padding-right: 50px;
+  padding-left: 50px;
+  width: 100vw;
+  border-bottom: 2px solid var(--pico-primary-background);
+}
+#logo {
+  width: 50px;
+  height: 50px;
+}
+#searching input {
+  height: 50px;
+}
+#login-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+#image {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+h1 {
+  padding-left: 35%;
+  padding-bottom: 30px;
+}
+.outline:hover {
+  background-color: var(--pico-primary-background);
+  color: white;
+  border-color: white;
+}

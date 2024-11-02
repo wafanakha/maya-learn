@@ -1,0 +1,11 @@
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --pico-text-selection-color: #289672;
+  --pico-primary: #36d49f;
+  --pico-primary-background: #36d49f;
+  --pico-primary-underline: #289672;
+  --pico-primary-hover: #289672;
+  --pico-primary-hover-background: #289672;
+  --pico-primary-focus: #36d49f;
+  --pico-primary-inverse: #fff;
+}
