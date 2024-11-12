@@ -1,0 +1,20 @@
+{
+  "name": "maya-learn",
+  "version": "1.0.0",
+  "description": "tubes impal semester 5",
+  "main": "app.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.7"
+  }
+}
