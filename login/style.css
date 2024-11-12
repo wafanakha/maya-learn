@@ -23,6 +23,9 @@ nav {
   align-items: center;
   justify-content: center;
 }
+#down-img {
+  align-self: end;
+}
 .login {
   display: flex;
   flex: 2;
