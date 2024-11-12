@@ -6,13 +6,13 @@ function initialize(passport, getuserbyEmail, getUserbyId) {
   const autentikasiUser = async (email, password, done) => {
     const user = getuserbyEmail(email);
     if (user == null) {
-      return done(null, false, { massage: "Tidak ada user dengan email" });
+      return done(null, false, { message: "Tidak ada user dengan email" });
     }
     try {
       if (await bcrypt.compare(password, user.password)) {
         return done(null, user);
       } else {
-        return done(null, false, { massage: "Password salah" });
+        return done(null, false, { message: "Password salah" });
       }
     } catch (e) {
       return done(e);

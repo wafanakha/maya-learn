@@ -36,6 +36,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
+  res.render("index.ejs");
+});
+app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
 app.get("/forgor", (req, res) => {
@@ -43,6 +46,9 @@ app.get("/forgor", (req, res) => {
 });
 app.get("/daftar", (req, res) => {
   res.render("daftar.ejs");
+});
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard.ejs");
 });
 
 app.post("/daftar", async (req, res) => {
@@ -54,17 +60,17 @@ app.post("/daftar", async (req, res) => {
       email: req.body.email,
       password: passwordHashed,
     });
-    res.redirect("/");
+    res.redirect("/login");
   } catch {
     res.redirect("/daftar");
   }
   console.log(users);
 });
 app.post(
-  "/",
+  "/login",
   passport.authenticate("local", {
-    successRedirect: "/forgor",
-    failureRedirect: "/daftar",
+    successRedirect: "/dashboard",
+    failureRedirect: "/login",
     failureFlash: true,
   })
 );
