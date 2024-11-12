@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/cssreset.css" />
+
+    <title>Maya-Learn</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <img src="/img/logo_transparent (1).png" id="logo" alt="" />
+        </li>
+        <li>
+          <input type="search" name="course-search" placeholder="cari kursus" />
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#">Semua Kursus</a></li>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><button class="outline" href="#">Masuk</button></li>
+        <li><button>Daftar</button></li>
+      </ul>
+    </nav>
+    <div id="login-container" class="">
+      <div id="image" class="container-fluid">
+        <img src="/img/login2.png" alt="" />
+      </div>
+      <div class="login">
+        <form action="/" method="post">
+          <fieldset>
+            <h1>Login</h1>
+            <label>
+              Email atau Username
+              <input
+                name="email"
+                placeholder="masukkan email"
+                autocomplete="email"
+              />
+            </label>
+            <label>
+              password
+              <input
+                type="password"
+                name="password"
+                placeholder="masukkan password"
+                autocomplete="current-password"
+              />
+            </label>
+            <a href="/forgor" id="lupa">Lupa password</a>
+          </fieldset>
+
+          <input type="submit" value="Login" class="primary" />
+        </form>
+        <a href="/daftar">belum punya akun?</a>
+      </div>
+    </div>
+  </body>
+</html>
