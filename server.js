@@ -12,11 +12,11 @@ const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
 
+const getuserbyEmail = (email) => users.find((user) => user.email === email);
+
 const initializePassport = require("./passport-config");
-initializePassport(
-  passport,
-  (email) => users.find((user) => user.email === email),
-  (id) => users.find((user) => user.id === id)
+initializePassport(passport, getuserbyEmail, (id) =>
+  users.find((user) => user.id === id)
 );
 
 const users = [];
@@ -80,18 +80,20 @@ app.post(
 );
 app.post("/forgor", (req, res) => {
   const email = req.body.email;
-  if (users[email]) {
+  const user = getuserbyEmail(email);
+  if (user) {
     const token = crypto.randomBytes(20).toString("hex");
-    users[email].resetToken = token;
+    user.resetToken = token;
     const transporter = nodeMailer.createTransport({
       service: "gmail",
+      secure: true,
       auth: {
-        user: "yezfordrive@gmail.com",
-        pass: "Aezakmi7",
+        user: "wafanakha15@gmail.com",
+        pass: "rzoe bdvz rbch mima",
       },
     });
-    const mailOpttion = {
-      from: "yezfordrive@gmail.com",
+    const mailOptions = {
+      from: "wafanakha15@gmail.com",
       to: email,
       subject: "Reset Password",
       text: `Berikut adalah link untuk mereset password http://localhost:3000/reset/${token}`,
@@ -113,8 +115,21 @@ app.post("/forgor", (req, res) => {
 app.get("/reset/:token", (req, res) => {
   const { token } = req.params;
   if (users.some((user) => user.resetToken == token)) {
-    res.render("/reset-password.ejs");
+    res.render("reset-password.ejs");
+  } else {
+    res.status(404).send("Token Invalid atau Expired");
   }
 });
-
+app.post("/reset", (req, res) => {
+  const { token, password } = req.body;
+  // Find the user with the given token and update their password
+  const user = users.find((user) => user.resetToken === token);
+  if (user) {
+    user.password = password;
+    delete user.resetToken; // Remove the reset token after the password is updated
+    res.status(200).send("Password updated successfully");
+  } else {
+    res.status(404).send("Invalid or expired token");
+  }
+});
 app.listen(3000);
