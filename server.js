@@ -8,6 +8,9 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
+const bodyParser = require("body-parser");
+const nodeMailer = require("nodemailer");
+const crypto = require("crypto");
 
 const initializePassport = require("./passport-config");
 initializePassport(
@@ -22,6 +25,7 @@ const users = [];
 // app.engine("html", require("ejs").renderFile);
 app.set("view-engine", "ejs");
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
@@ -74,5 +78,43 @@ app.post(
     failureFlash: true,
   })
 );
-app.post("/forgor", (req, res) => {});
+app.post("/forgor", (req, res) => {
+  const email = req.body.email;
+  if (users[email]) {
+    const token = crypto.randomBytes(20).toString("hex");
+    users[email].resetToken = token;
+    const transporter = nodeMailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "yezfordrive@gmail.com",
+        pass: "Aezakmi7",
+      },
+    });
+    const mailOpttion = {
+      from: "yezfordrive@gmail.com",
+      to: email,
+      subject: "Reset Password",
+      text: `Berikut adalah link untuk mereset password http://localhost:3000/reset/${token}`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send("Tidak bisa mengirim Email");
+      } else {
+        console.log(`Email sent: ${info.response}`);
+        res.status(200).send("lihat Email anda");
+      }
+    });
+  } else {
+    res.status(404).send("email tidak ditemukan");
+  }
+});
+
+app.get("/reset/:token", (req, res) => {
+  const { token } = req.params;
+  if (users.some((user) => user.resetToken == token)) {
+    res.render("/reset-password.ejs");
+  }
+});
+
 app.listen(3000);
