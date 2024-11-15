@@ -11,6 +11,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
+const methodOverride = require("method-override");
 
 const getuserbyEmail = (email) => users.find((user) => user.email === email);
 
@@ -38,24 +39,25 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
   res.render("login.ejs");
 });
-app.get("/login", (req, res) => {
+app.get("/login", checkNotAuth, (req, res) => {
   res.render("login.ejs");
 });
-app.get("/forgor", (req, res) => {
+app.get("/forgor", checkNotAuth, (req, res) => {
   res.render("forgor.ejs");
 });
-app.get("/daftar", (req, res) => {
+app.get("/daftar", checkNotAuth, (req, res) => {
   res.render("daftar.ejs");
 });
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", checkAuth, (req, res) => {
   res.render("dashboard.ejs");
 });
 
-app.post("/daftar", async (req, res) => {
+app.post("/daftar", checkNotAuth, async (req, res) => {
   try {
     const passwordHashed = await bcrypt.hash(req.body.password, 10);
     users.push({
@@ -72,13 +74,14 @@ app.post("/daftar", async (req, res) => {
 });
 app.post(
   "/login",
+  checkNotAuth,
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/login",
     failureFlash: true,
   })
 );
-app.post("/forgor", (req, res) => {
+app.post("/forgor", checkNotAuth, (req, res) => {
   const email = req.body.email;
   const user = getuserbyEmail(email);
   if (user) {
@@ -132,4 +135,28 @@ app.post("/reset", (req, res) => {
     res.status(404).send("Invalid or expired token");
   }
 });
+
+app.delete("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
+
+function checkAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+function checkNotAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/dashboard");
+  }
+  next();
+}
+
 app.listen(3000);
