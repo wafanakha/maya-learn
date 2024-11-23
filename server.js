@@ -43,16 +43,6 @@ initializePassport(passport, getuserbyEmail, (id) =>
   users.find((user) => user.id === id)
 );
 
-db.query("SELECT * FROM user WHERE user_id = ?", ["6"], (err, user) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log(user[0]);
-});
-
-// app.set("views", __dirname + "/views");
-// app.engine("html", require("ejs").renderFile);
 app.set("view-engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -116,56 +106,101 @@ app.post(
 );
 app.post("/forgor", checkNotAuth, (req, res) => {
   const email = req.body.email;
-  const user = getuserbyEmail(email);
-  if (user) {
-    const token = crypto.randomBytes(20).toString("hex");
-    user.resetToken = token;
-    const transporter = nodeMailer.createTransport({
-      service: "gmail",
-      secure: true,
-      auth: {
-        user: "wafanakha15@gmail.com",
-        pass: "rzoe bdvz rbch mima",
-      },
-    });
-    const mailOptions = {
-      from: "wafanakha15@gmail.com",
-      to: email,
-      subject: "Reset Password",
-      text: `Berikut adalah link untuk mereset password http://localhost:3000/reset/${token}`,
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send("Tidak bisa mengirim Email");
-      } else {
-        console.log(`Email sent: ${info.response}`);
-        res.status(200).send("lihat Email anda");
-      }
-    });
-  } else {
-    res.status(404).send("email tidak ditemukan");
-  }
+  db.query("SELECT * FROM user WHERE email = ?", [email], (err, user) => {
+    if (err) {
+      console.log(err.stack);
+      return;
+    }
+    user = user[0];
+    if (user != undefined) {
+      const token = crypto.randomBytes(20).toString("hex");
+      db.query(
+        "UPDATE user SET token = ? WHERE email = ?",
+        [token, email],
+        (err) => {
+          if (err) {
+            console.log(err.stack);
+            return;
+          }
+          console.log("token success");
+        }
+      );
+      const transporter = nodeMailer.createTransport({
+        service: "gmail",
+        secure: true,
+        auth: {
+          user: "wafanakha15@gmail.com",
+          pass: "rzoe bdvz rbch mima",
+        },
+      });
+      const mailOptions = {
+        from: "wafanakha15@gmail.com",
+        to: email,
+        subject: "Reset Password",
+        text: `Berikut adalah link untuk mereset password http://localhost:5000/reset/${token}`,
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          res.status(500).send("Tidak bisa mengirim Email");
+        } else {
+          console.log(`Email sent: ${info.response}`);
+          res.status(200).send("lihat Email anda");
+        }
+      });
+    } else {
+      res.status(404).send("email tidak ditemukan");
+    }
+  });
 });
 
 app.get("/reset/:token", (req, res) => {
   const { token } = req.params;
-  if (users.some((user) => user.resetToken == token)) {
-    res.render("reset-password.ejs");
-  } else {
-    res.status(404).send("Token Invalid atau Expired");
-  }
+  db.query("SELECT * FROM user WHERE token = ?", [token], (err, user) => {
+    if (err) {
+      console.log(err.stack);
+      return;
+    }
+    user = user[0];
+    if (user != undefined) {
+      res.render("reset-password.ejs");
+    } else {
+      res.status(404).send("Token Invalid atau Expired");
+    }
+  });
 });
 app.post("/reset", (req, res) => {
   const { token, password } = req.body;
-  const user = users.find((user) => user.resetToken === token);
-  if (user) {
-    user.password = password;
-    delete user.resetToken;
-    res.status(200).send("Password updated successfully");
-  } else {
-    res.status(404).send("Invalid or expired token");
-  }
+  db.query("SELECT * FROM user WHERE token = ?", [token], (err, user) => {
+    if (err) {
+      console.log(err.stack);
+      return;
+    }
+    user = user[0];
+    if (user != undefined) {
+      db.query("UPDATE user SET password = ? WHERE token = ?"),
+        [password, token],
+        (err) => {
+          if (err) {
+            console.log(err.stack);
+            return;
+          }
+        };
+      db.query(
+        "UPDATE user SET token = '' WHERE password = ?",
+        [password],
+        (err) => {
+          if (err) {
+            console.log(err.stack);
+            return;
+          }
+        }
+      );
+      res.status(200).send("Password updated successfully");
+    } else {
+      res.status(404).send("Token Invalid atau Expired");
+    }
+  });
 });
 
 app.delete("/logout", (req, res) => {
