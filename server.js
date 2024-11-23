@@ -14,13 +14,6 @@ const crypto = require("crypto");
 const mysql = require("mysql");
 const methodOverride = require("method-override");
 
-const getuserbyEmail = (email) => users.find((user) => user.email === email);
-
-const initializePassport = require("./passport-config");
-initializePassport(passport, getuserbyEmail, (id) =>
-  users.find((user) => user.id === id)
-);
-
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -34,6 +27,28 @@ db.connect((err) => {
     return;
   }
   console.log("Terhubung ke database dengan ID " + db.threadId);
+});
+
+const getuserbyEmail = (email) =>
+  db.query("SELECT * FROM user WHERE email = ?", [email], (err, user) => {
+    if (err) {
+      console.log(err.stack);
+      return;
+    }
+    return user[0];
+  });
+
+const initializePassport = require("./passport-config");
+initializePassport(passport, getuserbyEmail, (id) =>
+  users.find((user) => user.id === id)
+);
+
+db.query("SELECT * FROM user WHERE user_id = ?", ["6"], (err, user) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log(user[0]);
 });
 
 // app.set("views", __dirname + "/views");
