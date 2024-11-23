@@ -11,6 +11,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
+const mysql = require("mysql");
 const methodOverride = require("method-override");
 
 const getuserbyEmail = (email) => users.find((user) => user.email === email);
@@ -20,13 +21,27 @@ initializePassport(passport, getuserbyEmail, (id) =>
   users.find((user) => user.id === id)
 );
 
-const users = [];
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "aezakmi",
+  database: "maya",
+});
+
+db.connect((err) => {
+  if (err) {
+    console.log("Tidak bisa konek ke DB" + err.stack);
+    return;
+  }
+  console.log("Terhubung ke database dengan ID " + db.threadId);
+});
 
 // app.set("views", __dirname + "/views");
 // app.engine("html", require("ejs").renderFile);
 app.set("view-engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
@@ -59,18 +74,21 @@ app.get("/dashboard", checkAuth, (req, res) => {
 
 app.post("/daftar", checkNotAuth, async (req, res) => {
   try {
+    const { username, email } = req.body;
     const passwordHashed = await bcrypt.hash(req.body.password, 10);
-    users.push({
-      id: Date.now().toString(),
-      username: req.body.username,
-      email: req.body.email,
-      password: passwordHashed,
-    });
-    res.redirect("/login");
-  } catch {
-    res.redirect("/daftar");
-  }
-  console.log(users);
+    db.query(
+      "INSERT INTO user (username, password, email) VALUES (?, ?, ?)",
+      [username, passwordHashed, email],
+      (err) => {
+        if (err) {
+          console.log("Ekseksi tidak berhasil: " + err.stack);
+          res.redirect("/daftar");
+          return;
+        }
+        res.redirect("/login");
+      }
+    );
+  } catch {}
 });
 app.post(
   "/login",
@@ -125,11 +143,10 @@ app.get("/reset/:token", (req, res) => {
 });
 app.post("/reset", (req, res) => {
   const { token, password } = req.body;
-  // Find the user with the given token and update their password
   const user = users.find((user) => user.resetToken === token);
   if (user) {
     user.password = password;
-    delete user.resetToken; // Remove the reset token after the password is updated
+    delete user.resetToken;
     res.status(200).send("Password updated successfully");
   } else {
     res.status(404).send("Invalid or expired token");
@@ -159,4 +176,4 @@ function checkNotAuth(req, res, next) {
   next();
 }
 
-app.listen(3000);
+app.listen(5000);
