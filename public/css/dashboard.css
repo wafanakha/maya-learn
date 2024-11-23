@@ -1,0 +1,323 @@
+/* Reset dasar untuk navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 70px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  height: 40px;
+  padding: 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk dropdown */
+.dropdown {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Styling untuk details dan summary */
+.dropdown summary {
+  font-size: 14px; /* Mengecilkan teks di dalam summary */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam summary */
+.dropdown summary img {
+  width: 30px; /* Mengecilkan ukuran gambar */
+  height: 30px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk list di dalam dropdown */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling untuk <li> di dalam dropdown */
+.dropdown ul li {
+  font-size: 12px; /* Mengecilkan ukuran teks dalam item list */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam <li> */
+.dropdown ul li img {
+  width: 20px; /* Mengecilkan ukuran gambar */
+  height: 20px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk link dalam <li> */
+.dropdown ul li a {
+  font-size: 12px; /* Mengecilkan ukuran teks link */
+}
+
+/* Styling untuk gambar profil */
+.profile-image {
+  width: 40px;
+  height: 40px;
+}
+
+.article-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 20000px;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: #e7faff; /* Warna putih untuk kartu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  border-radius: 8px;
+}
+
+.article-card content {
+  padding: 20px;
+}
+.article-card .content h1 {
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.article-card .image img {
+  padding: 20px;
+}
+
+.article-card .content p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.article-card .content button {
+  background-color: #58faf9; /* Warna tombol */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  padding-left: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.card-logo .image-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spasi antara tombol kiri, kategori, dan tombol kanan */
+  background-color: #e7faff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 8000px;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: nowrap; /* Mencegah tombol turun ke baris baru */
+  overflow-x: auto;
+}
+
+.category-buttons button {
+  background-color: #f5f9ff;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.carousel-button {
+  background: none;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #36c2a7;
+  padding: 0.5rem;
+}
+
+.carousel-button:disabled {
+  color: lightgray;
+  border-color: #36c2a7;
+  cursor: not-allowed;
+}
+
+.category-buttons button:hover {
+  border: 1px solid #007bff; /* Ganti warna border saat hover */
+}
+
+/* Container Carousel */
+.carousel {
+  display: flex;
+  flex-wrap: wrap; /* Membungkus card agar ke bawah jika ruang tidak cukup */
+  justify-content: center; /* Pusatkan card secara horizontal */
+  gap: 1.5rem; /* Jarak antar card */
+  padding: 2rem; /* Padding untuk ruang sekitar carousel */
+}
+
+/* Card */
+.carousel .card {
+  flex: 0 0 calc(25% - 1.5rem); /* Lebar card (4 per baris) */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel .card:hover {
+  transform: translateY(-5px); /* Efek hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Gambar Card */
+.carousel .card img {
+  width: 100%;
+  height: 150px; /* Tinggi tetap untuk gambar */
+  object-fit: cover; /* Gambar tetap proporsional */
+}
+
+/* Konten Card */
+.carousel .card-content {
+  padding: 1rem;
+  text-align: left;
+}
+
+.carousel .card h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 0 0 0.5rem;
+}
+
+.carousel .card p {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0.25rem 0;
+}
+
+.carousel .card .price {
+  font-weight: bold;
+  color: #36c2a7; /* Warna harga */
+  margin-top: 0.5rem;
+}
+
+.semua-kursus {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 20vh;
+}
+
+.semua-kursus button {
+  padding: 0.25rem 0.25rem;
+  font-size: 15px;
+}
+
+/* Responsivitas */
+@media (max-width: 1024px) {
+  .card {
+    flex: 0 0 calc(33.333% - 1.5rem); /* 3 card per baris */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 calc(50% - 1.5rem); /* 2 card per baris */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 0 0 calc(100% - 1.5rem); /* 1 card per baris */
+  }
+}
+
+/* Responsif untuk perangkat dengan lebar <= 768px */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .search-section {
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-section input {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .menu li {
+    margin: 10px 0;
+  }
+
+  .menu li a {
+    font-size: 16px;
+  }
+}

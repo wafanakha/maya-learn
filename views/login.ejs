@@ -16,7 +16,7 @@
     <nav>
       <ul>
         <li>
-          <img src="/img/logo_transparent (1).png" id="logo" alt="" />
+          <img src="/img/logotransparan.png" id="logo" alt="" />
         </li>
         <li>
           <input type="search" name="course-search" placeholder="cari kursus" />
@@ -25,7 +25,9 @@
       <ul>
         <li><a href="#">Semua Kursus</a></li>
         <li><a href="#">Tentang Kami</a></li>
-        <li><button href="/daftar">Daftar</button></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="outline">Masuk</button></li>
+        <li><button href="daftar">Daftar</button></li>
       </ul>
     </nav>
     <div id="login-container" class="">
@@ -33,35 +35,33 @@
         <img src="/img/login2.png" alt="" />
       </div>
       <div class="login">
-        <form action="/login" method="post">
+        <form action="login" method="post">
           <fieldset>
             <h1>Login</h1>
-            <h4 class="error">
-              <% if (messages.error) { %> <%= messages.error %> <% } %>
-            </h4>
+
             <label>
-              Email atau Username
+              Email
               <input
                 name="email"
-                placeholder="masukkan email"
+                placeholder="Masukkan Email"
                 autocomplete="email"
                 required
               />
             </label>
             <label>
-              password
+              Password
               <input
                 type="password"
-                name="password"
-                placeholder="masukkan password"
+                name="Password"
+                placeholder="Masukkan Password"
                 autocomplete="current-password"
                 required
               />
             </label>
-            <a href="/forgor" id="lupa">Lupa password</a>
+            <a href="/forgor" id="lupa">Lupa password?</a>
           </fieldset>
 
-          <input type="submit" value="Login" class="primary" />
+          <input type="submit" value="Masuk" class="primary" />
         </form>
         <a href="/daftar">belum punya akun?</a>
       </div>

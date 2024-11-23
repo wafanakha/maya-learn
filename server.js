@@ -214,6 +214,7 @@ app.delete("/logout", (req, res) => {
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
+    console.log("autheeedd");
     return next();
   }
   res.redirect("/login");
@@ -221,6 +222,7 @@ function checkAuth(req, res, next) {
 
 function checkNotAuth(req, res, next) {
   if (req.isAuthenticated()) {
+    console.log("nooooot autheeedd");
     return res.redirect("/dashboard");
   }
   next();

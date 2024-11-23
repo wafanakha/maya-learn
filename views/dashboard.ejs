@@ -3,17 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/cssreset.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+
+    <title>Maya Learn</title>
   </head>
   <body>
-    <h1>ini dashboard</h1>
-    <form action="/logout?_method=DELETE" method="post">
-      <button type="submit">log out</button>
-    </form>
+    <nav>
+      <div class="logo-section">
+        <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+      </div>
+      <div class="search-section">
+        <input type="search" name="course-search" placeholder="Cari kursus" />
+      </div>
+      <ul class="menu">
+        <li><a href="">Semua Kursus</a></li>
+        <li><a href="">Tentang Kami</a></li>
+        <li><a href="">Kontak</a></li>
+      </ul>
+      <details class="dropdown">
+        <summary>
+          <img
+            src="/img/user-profile-square.png"
+            alt="User Profile"
+            class="profile-image"
+          />
+        </summary>
+        <ul>
+          <li>
+            <img src="/img/user-profile-square.png" /><a href="#"
+              >Profile Saya</a
+            >
+          </li>
+          <li><img src="/img/cart.png" /><a href="#">Daftar Pesanan</a></li>
+          <li><img src="/img/settings.png" /><a href="#">Pengaturan</a></li>
+          <li>
+            <img src="/img/logout-04.png" />
+            <form action="/logout?_method=DELETE" method="POST">
+              <button type="submit">Keluar</button>
+            </form>
+          </li>
+        </ul>
+      </details>
+    </nav>
+
+    <article class="article-card">
+      <div class="content">
+        <h1>Mulai Perjalanan Belajar Anda di Sini</h1>
+        <p>
+          Kuasi keterampilan baru bersama instruktur ahli, kapan saja dan di
+          mana saja. Pilih dari berbagai kategori kursus yang dirancang untuk
+          mendukung kesuksesan Anda.
+        </p>
+        <button>Jelajahi Kursus</button>
+      </div>
+      <div class="image">
+        <img src="/img/dashboard1.png" alt="Ilustrasi Belajar" />
+      </div>
+    </article>
+
+    <article class="card-logo">
+      <div class="image-logo">
+        <img src="/img/logotransparan.png" alt="" />
+      </div>
+    </article>
+
+    <div class="carousel-container">
+      <button class="carousel-button" id="next-button" disabled>&lt;</button>
+      <div class="category-buttons">
+        <button class="outline">Data Science</button>
+        <button class="outline">Bisnis</button>
+        <button class="outline">Marketing</button>
+        <button class="outline">Data Science</button>
+        <button class="outline">Musik</button>
+      </div>
+      <button class="carousel-button" id="next-button">&gt;</button>
+    </div>
+
+    <div class="carousel">
+      <div class="card">
+        <img src="/img-card/icon Flutter background.jpg" alt="Laravel Class" />
+        <div class="card-content">
+          <h3>Laravel mastering class</h3>
+          <p>27 Module - Supriad</p>
+          <p class="price">Rp 1.500.000</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/img-card/icon Flutter background.jpg" alt="Flutter Class" />
+        <div class="card-content">
+          <h3>Flutter mastering class</h3>
+          <p>34 Module - Supriad</p>
+          <p class="price">Rp 1.400.000</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/img-card/icon python background.jpg" alt="Python Class" />
+        <div class="card-content">
+          <h3>Python mastering class</h3>
+          <p>23 Module - Supriad</p>
+          <p class="price">Rp 700.000</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/img-card/icon python background.jpg" alt="Python Class" />
+        <div class="card-content">
+          <h3>Python mastering class</h3>
+          <p>23 Module - Supriad</p>
+          <p class="price">Rp 700.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="/img-card/icon Kotlin mastering class.jpg"
+          alt="Kotlin Class"
+        />
+        <div class="card-content">
+          <h3>Kotlin mastering class</h3>
+          <p>40 Module - Supriad</p>
+          <p class="price">Rp 2.000.000</p>
+        </div>
+      </div>
+    </div>
+    <div class="semua-kursus">
+      <button>Semua kursus</button>
+    </div>
+
+    <script src="/scripts/js.js"></script>
   </body>
 </html>

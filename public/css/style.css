@@ -1,47 +1,182 @@
+/* Styling untuk Navbar */
 nav {
   position: fixed;
-  padding-right: 50px;
-  padding-left: 50px;
-  width: 100vw;
+  width: 100%;
+  padding: 0px 20px; /* Menambahkan padding kiri dan kanan */
+  top: 0px;
+  left: 0px;
+  background-color: #fff;
   border-bottom: 2px solid var(--pico-primary-background);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Menjaga jarak antara elemen navbar */
 }
+
+nav ul li {
+  display: inline-flex;
+}
+
+nav ul li button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Menggeser navbar sedikit ke kiri */
+ul li {
+  margin-right: 30px; /* Memberikan jarak antar elemen */
+}
+
+ul li:first-child {
+  margin-left: 0px; /* Menggeser seluruh navbar ke kiri */
+}
+
+#lupa {
+  text-align: right; /* Memindahkan teks ke kanan */
+  display: block; /* Membuatnya menjadi elemen blok supaya bisa ter-align ke kanan */
+  margin-top: 10px; /* Memberikan sedikit jarak atas */
+}
+
 #logo {
   width: 50px;
   height: 50px;
 }
+
 #searching input {
-  height: 50px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 5px;
 }
+
+/* Styling untuk Container Login */
 #login-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  padding: 20px; /* Menambahkan padding untuk memberi jarak di sekitar container */
+  margin-top: 30px;
 }
+
+/* Styling untuk Gambar */
 #image {
   flex: 3;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
+
 #down-img {
   align-self: end;
 }
+
+/* Styling untuk Form Login */
 .login {
-  display: flex;
   flex: 2;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-flow: column;
+  align-items: center;
+  padding: 30px;
+  max-width: 450px; /* Menambahkan lebar maksimum pada form */
+  background-color: #fff;
+  border-radius: 8px;
+
+  margin-left: 20px; /* Menambahkan margin kiri */
+  margin-right: 20px; /* Menambahkan margin kanan */
 }
+
 h1 {
-  padding-left: 35%;
-  padding-bottom: 30px;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
 }
-.outline:hover {
-  background-color: var(--pico-primary-background);
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Memberikan jarak antar input */
+  box-sizing: border-box;
+}
+
+/* Styling untuk placeholder */
+input::placeholder {
+  font-size: 14px; /* Ukuran font untuk placeholder agar sama dengan input */
+  color: #888; /* Warna teks placeholder untuk membedakan dari teks input */
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #36d49f;
   color: white;
-  border-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
-.error {
-  color: red;
+
+input[type="submit"]:hover {
+  background-color: #289672;
+}
+
+a {
+  text-align: center;
+  margin-top: 10px;
+  color: #36d49f;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Styling untuk bagian responsif */
+@media (max-width: 768px) {
+  #login-container {
+    flex-direction: column;
+    padding: 15px; /* Mengurangi padding pada tampilan mobile */
+  }
+
+  .login {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  input[type="submit"] {
+    padding: 10px;
+  }
 }
