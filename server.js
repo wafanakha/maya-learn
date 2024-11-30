@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+const database = require("/home/nakha/project/kuliah/maya-learn/database/mysql.js");
 const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -14,34 +14,20 @@ const crypto = require("crypto");
 const mysql = require("mysql");
 const methodOverride = require("method-override");
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "aezakmi",
-  database: "maya",
-});
-
-db.connect((err) => {
-  if (err) {
-    console.log("Tidak bisa konek ke DB" + err.stack);
-    return;
-  }
-  console.log("Terhubung ke database dengan ID " + db.threadId);
-});
-
-const getuserbyEmail = (email) =>
-  db.query("SELECT * FROM user WHERE email = ?", [email], (err, user) => {
+database.db.query(
+  "SELECT * FROM user WHERE email = ?",
+  ["wafanakha17@gmail.com"],
+  (err, user) => {
     if (err) {
       console.log(err.stack);
       return;
     }
-    return user[0];
-  });
+    console.log(user[0]);
+  }
+);
 
 const initializePassport = require("./passport-config");
-initializePassport(passport, getuserbyEmail, (id) =>
-  users.find((user) => user.id === id)
-);
+initializePassport(passport);
 
 app.set("view-engine", "ejs");
 

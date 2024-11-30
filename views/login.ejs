@@ -35,10 +35,10 @@
         <img src="/img/login2.png" alt="" />
       </div>
       <div class="login">
-        <form action="login" method="post">
+        <form action="/login" method="post">
           <fieldset>
             <h1>Login</h1>
-
+            <% if (messages.error) { %> <%= messages.error %> <% } %>
             <label>
               Email
               <input
@@ -52,7 +52,7 @@
               Password
               <input
                 type="password"
-                name="Password"
+                name="password"
                 placeholder="Masukkan Password"
                 autocomplete="current-password"
                 required
