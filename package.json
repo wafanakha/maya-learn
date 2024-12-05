@@ -2,9 +2,9 @@
   "name": "maya-learn",
   "version": "1.0.0",
   "description": "tubes impal semester 5",
-  "main": "app.js",
+  "main": "./server/server.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",

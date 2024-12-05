@@ -1,12 +1,12 @@
 const { authenticate } = require("passport");
 const bcrypt = require("bcrypt");
 const Local = require("passport-local").Strategy;
-const database = require("/home/nakha/project/kuliah/maya-learn/database/mysql.js");
+const database = require("../database/mysql.js");
 
 function initialize(passport) {
   const autentikasiUser = (email, password, done) => {
     console.log("auth");
-    database.db.query(
+    database.query(
       "SELECT * FROM user WHERE email = ?",
       [email],
       async (err, user) => {
@@ -38,7 +38,7 @@ function initialize(passport) {
   passport.deserializeUser((id, done) => {
     return done(
       null,
-      database.db.query(
+      database.query(
         "SELECT * FROM user WHERE user_id = ?",
         [id],
         (err, user) => {
