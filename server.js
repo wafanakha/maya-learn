@@ -11,7 +11,6 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
-const mysql = require("mysql");
 const methodOverride = require("method-override");
 
 database.db.query(
@@ -164,6 +163,7 @@ app.get("/reset/:token", (req, res) => {
     }
   );
 });
+
 app.post("/reset", (req, res) => {
   const { token, password } = req.body;
   database.db.query(
