@@ -13,6 +13,7 @@ const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const fileUpload = require('express-fileupload');
 
 const methodOverride = require("method-override");
 
@@ -33,6 +34,7 @@ initializePassport(passport);
 
 app.set("view-engine", "ejs");
 
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -63,6 +65,9 @@ app.get("/daftar", checkNotAuth, (req, res) => {
 });
 app.get("/dashboard", checkAuth, (req, res) => {
   res.render("dashboard.ejs");
+});
+app.get("/nyoba", (req, res) => {
+  res.render("nyoba.ejs");
 });
 
 app.post("/daftar", checkNotAuth, (req, res) => {
@@ -97,6 +102,13 @@ app.delete("/logout", (req, res) => {
     res.redirect("/");
   });
 });
+
+app.post('/nyoba', (req, res) => {
+  const { image } = req.files;
+  if (!image) return res.sendStatus(400);
+  image.mv(__dirname + '/upload/' + image.name);
+  res.sendStatus(200);
+})
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
