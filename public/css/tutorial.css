@@ -1,0 +1,193 @@
+/* Styling untuk Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  top: 0;
+  z-index: 100;
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  margin-bottom: auto;
+  height: 40px;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk tombol */
+.menu button.outline {
+  padding: 0.5rem 2rem;
+  border: 5px solid #2d9e8c;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.menu button {
+  padding: 0.5rem 2rem;
+  border: 5px solid #2d9e8c;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 0.7;
+  background-color: #403f3f;
+  padding: 20px;
+  border-radius: 8px;
+  position: sticky; /* Membuat sidebar tetap terlihat */
+  top: 0; /* Jarak dari atas viewport */
+  height: 100vh; /* Memastikan sidebar memiliki tinggi penuh */
+  overflow-y: auto; /* Menambahkan scroll jika isi sidebar melebihi tinggi */
+}
+
+.sidebar h3 {
+  margin-bottom: 10px;
+  color: #a09b9bf2;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none; /* Menghilangkan garis bawah */
+  color: #007bff; /* Warna biru untuk link */
+  font-weight: bold; /* Menambahkan ketebalan teks */
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline; /* Memberikan garis bawah saat hover */
+  color: #0056b3; /* Mengubah warna saat hover */
+}
+
+/* Content */
+.content {
+  flex: 3;
+}
+
+.course-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://kinsta.com/wp-content/uploads/2020/10/laravel-tutorial-1024x512.jpg");
+  background-position: center; /* Menempatkan gambar di tengah */
+  color: white;
+  padding: 60px; /* Menambahkan padding agar konten terlihat lebih baik */
+  position: relative; /* Agar elemen overlay bisa digunakan */
+}
+
+.course-header img.course-image {
+  width: 100px;
+  height: 80px;
+  margin-right: 70px;
+  border-radius: 8px; /* Membuat gambar sedikit melengkung */
+}
+
+.course-header .course-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.course-header p {
+  margin: 5px 0 0;
+  color: white;
+}
+
+.course-summary {
+  background-color: #16d3d4;
+  padding: 20px;
+}
+
+.course-summary p {
+  padding: 30px;
+  text-align: justify;
+  line-height: 1.2;
+}
+
+.lesson {
+  max-width: 800px;
+  margin: 130px;
+  padding: 30px;
+  border: 10px solid #ddd;
+  border-radius: 15px;
+}
+
+.lesson img {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.lesson button {
+  background-color: #0a6061;
+  color: white;
+  margin: 70px;
+  font-size: 16px;
+  padding: 10px 200px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,174 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  margin-bottom: auto;
+  height: 40px;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk dropdown */
+.dropdown {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Styling untuk details dan summary */
+.dropdown summary {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam summary */
+.dropdown summary img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+/* Styling untuk list di dalam dropdown */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling untuk <li> di dalam dropdown */
+.dropdown ul li {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam <li> */
+.dropdown ul li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Styling untuk link dalam <li> */
+.dropdown ul li a {
+  font-size: 12px;
+}
+
+/* Kontainer Utama */
+.tentang-container {
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  margin-bottom: 100px;
+}
+
+.logo {
+  width: 150px; /* Ukuran logo */
+}
+
+/* Deskripsi Section */
+.description-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #0a6061;
+}
+
+.text-content {
+  width: 100%;
+  align-items: center;
+}
+
+.text-content h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.text-content p {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #ffffff;
+  max-width: 740px;
+  padding: 20px;
+  text-align: justify;
+}
+
+.image-content {
+  width: 35%;
+}
+
+.deskripsi-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Misi Section */
+.mission-section {
+  text-align: center;
+}
+
+.mission-section p {
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.tim-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

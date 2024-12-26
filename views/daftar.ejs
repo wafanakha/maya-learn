@@ -1,77 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
-    <link rel="stylesheet" href="/css/cssreset.css" />
-    <link rel="stylesheet" href="/css/style_daftar.css" />
 
-    <title>Maya-Learn</title>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li>
-          <img src="/img/daftar1.png" id="logo" alt="" />
-        </li>
-        <li>
-          <input type="search" name="course-search" placeholder="cari kursus" />
-        </li>
-      </ul>
-      <ul>
-        <li><a href="#">Semua Kursus</a></li>
-        <li><a href="#">Tentang Kami</a></li>
-        <li><button class="outline" href="#">Masuk</button></li>
-      </ul>
-    </nav>
-    <div id="login-container">
-      <div id="image">
-        <img src="/img/login2.png" alt="" />
-      </div>
-      <div class="login">
-        <form action="/daftar" method="post">
-          <fieldset>
-            <h1>Daftar</h1>
-            <label>
-              Username
-              <input
-                name="username"
-                placeholder="masukkan username"
-                autocomplete="given-name"
-                id="username"
-                required
-              />
-            </label>
-            <label>
-              Email
-              <input
-                name="email"
-                type="email"
-                placeholder="masukkan email"
-                autocomplete="email"
-                required
-              />
-            </label>
-            <label>
-              Password
-              <input
-                type="password"
-                name="password"
-                placeholder="masukkan password"
-                autocomplete="new-password"
-                required
-              />
-            </label>
-          </fieldset>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="/css/cssreset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Maya-Learn</title>
+</head>
 
-          <input type="submit" value="Daftar" class="primary" />
-        </form>
-        <a href="/login">sudah punya akun?</a>
-      </div>
+<body>
+  <nav>
+    <div class="logo-section">
+      <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
     </div>
-  </body>
+    <div class="search-section">
+      <input type="search" name="course-search" placeholder="Cari kursus" />
+    </div>
+    <ul class="menu">
+      <li><a href="">Semua Kursus</a></li>
+      <li><a href="">Tentang Kami</a></li>
+      <li><a href="">Kontak</a></li>
+      <button class="outline">Masuk</button>
+      <button>Daftar</button>
+    </ul>
+  </nav>
+  <section class="daftar">
+    <form action="/daftar" method="post">
+      <div class="container-daftar">
+        <img src="/img/daftarr.png" alt="Ilustrasi wanita dengan laptop" class="daftar-image" width="34%" />
+        <div class="content">
+          <h1>Daftar</h1>
+          <h2>Nama</h2>
+          <input name="username" placeholder="Nama" autocomplete="given-name" />
+          <h2>Email</h2>
+          <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
+            aria-describedby="email-helper" />
+          <h2>Password</h2>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" placeholder="Masukkan password" aria-label="Password"
+              autocomplete="current-password" />
+            <img src="/img/eye-close.png" id="eye-icon" />
+          </div>
+          <button type="submit">Masuk</button>
+          <div class="link-center">
+            <a href="/daftar">Sudah punya Akun?</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+  <script src="/scripts/scripts.js"></script>
+</body>
+
 </html>

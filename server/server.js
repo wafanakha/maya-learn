@@ -47,6 +47,14 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(
+  fileUpload({
+      limits: {
+          fileSize: 10000000,
+      },
+      abortOnLimit: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
@@ -66,9 +74,13 @@ app.get("/daftar", checkNotAuth, (req, res) => {
 app.get("/dashboard", checkAuth, (req, res) => {
   res.render("dashboard.ejs");
 });
+app.get('/tutorial', (req, res) => {
+  res.render('tutorialdesc.ejs');
+})
 app.get("/nyoba", (req, res) => {
   res.render("nyoba.ejs");
 });
+
 
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
@@ -106,10 +118,12 @@ app.delete("/logout", (req, res) => {
 app.post('/nyoba', (req, res) => {
   const { image } = req.files;
   if (!image) return res.sendStatus(400);
-  image.mv(__dirname + '/upload/' + image.name);
+
+  if (!/^image/.test(image.mimetype)) return res.sendStatus(400);
+
+  image.mv( process.cwd() + '/public/img/upload/' + image.name);
   res.sendStatus(200);
 })
-
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     console.log("autheeedd");
