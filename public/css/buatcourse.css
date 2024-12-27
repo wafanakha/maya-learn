@@ -1,0 +1,324 @@
+html,
+body {
+  background-color: #16d3d4;
+  height: 100%;
+  margin: 0; /* Hilangkan margin bawaan */
+  padding: 0; /* Hilangkan padding bawaan */
+}
+/* Styling untuk navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  margin-bottom: auto;
+  height: 40px;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk dropdown */
+.dropdown {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Styling untuk details dan summary */
+.dropdown summary {
+  font-size: 14px; /* Mengecilkan teks di dalam summary */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam summary */
+.dropdown summary img {
+  width: 30px; /* Mengecilkan ukuran gambar */
+  height: 30px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk list di dalam dropdown */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%; /* Menempatkan dropdown di bawah summary */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  display: none;
+}
+
+/* Menampilkan dropdown saat summary di-click */
+.dropdown[open] ul {
+  display: block;
+}
+
+/* Styling untuk <li> di dalam dropdown */
+.dropdown ul li {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam <li> */
+.dropdown ul li img {
+  width: 20px; /* Mengecilkan ukuran gambar */
+  height: 20px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk link dalam <li> */
+.dropdown ul li a {
+  font-size: 12px; /* Mengecilkan ukuran teks link */
+  text-decoration: none;
+  color: #333;
+  padding: 5px 10px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown ul li a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+.container {
+  background-color: #16d3d4;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+/* Bagian Judul */
+.judul-section {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.judul-section .form-field {
+  margin-bottom: 15px;
+}
+
+.judul-section input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  background: transparent;
+}
+
+.judul-section input:focus {
+  border-bottom: 2px solid #005f5f;
+}
+
+/* Bagian Ringkasan */
+.ringkasan-section {
+  background-color: white;
+  border: 2px solid #005f5f; /* Border khusus untuk Ringkasan */
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ringkasan-section h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ringkasan-section textarea {
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.ringkasan-section textarea:focus {
+  border-bottom: 2px solid #005f5f;
+}
+
+.subjudul-card {
+  background-color: white;
+  border-radius: 16px; /* Sudut membulat */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow untuk efek */
+  padding: 20px;
+  position: relative;
+  overflow: hidden; /* Untuk menjaga sudut membulat */
+  margin: 20px 0;
+}
+
+.subjudul-input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ccc; /* Garis bawah untuk input */
+  font-size: 16px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.subjudul-input::placeholder {
+  color: #aaa;
+}
+
+.deskripsi-wrapper {
+  position: relative;
+}
+
+.deskripsi-area {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid #ccc; /* Border kotak deskripsi */
+  border-radius: 8px; /* Sudut membulat */
+  font-size: 16px;
+  resize: none; /* Nonaktifkan resize */
+  outline: none;
+}
+
+.deskripsi-area::placeholder {
+  color: #aaa;
+  text-align: center;
+}
+
+.add-image-btn {
+  position: absolute; /* Posisi tombol di dalam form-field */
+  right: 10px;
+  bottom: 8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.add-image-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.upload-icon {
+  position: fixed;
+  right: 80px;
+  bottom: 50px;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
+  border-radius: 80%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-icon:hover {
+  transform: scale(1.1);
+  background-color: #eaf4ff;
+}
+
+.upload-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Styling untuk tombol tambah dan silang */
+.icon-container {
+  position: fixed;
+  right: 170px;
+  bottom: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon-button {
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+  background-color: #eaf4ff;
+}
+
+.icon-button img {
+  width: 20px; /* Ukuran ikon PNG */
+  height: 20px;
+  pointer-events: none; /* Mencegah ikon dari aksi pointer */
+}

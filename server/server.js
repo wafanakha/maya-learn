@@ -13,7 +13,7 @@ const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 
 const methodOverride = require("method-override");
 
@@ -49,10 +49,10 @@ app.use(
 );
 app.use(
   fileUpload({
-      limits: {
-          fileSize: 10000000,
-      },
-      abortOnLimit: true,
+    limits: {
+      fileSize: 10000000,
+    },
+    abortOnLimit: true,
   })
 );
 app.use(passport.initialize());
@@ -74,13 +74,15 @@ app.get("/daftar", checkNotAuth, (req, res) => {
 app.get("/dashboard", checkAuth, (req, res) => {
   res.render("dashboard.ejs");
 });
-app.get('/tutorial', (req, res) => {
-  res.render('tutorialdesc.ejs');
-})
+app.get("/tutorial", (req, res) => {
+  res.render("tutorialdesc.ejs");
+});
 app.get("/nyoba", (req, res) => {
   res.render("nyoba.ejs");
 });
-
+app.get("/make-course", checkAuth, (req, res) => {
+  res.render("makecourse.ejs");
+});
 
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
@@ -94,6 +96,11 @@ app.post(
     failureFlash: true,
   })
 );
+
+app.post("/create-course", checkAuth, (req, res) => {
+  console.log("fuck");
+});
+
 app.post("/forgor", checkNotAuth, (req, res) => {
   forgor(req, res);
 });
@@ -115,15 +122,15 @@ app.delete("/logout", (req, res) => {
   });
 });
 
-app.post('/nyoba', (req, res) => {
+app.post("/nyoba", (req, res) => {
   const { image } = req.files;
   if (!image) return res.sendStatus(400);
 
   if (!/^image/.test(image.mimetype)) return res.sendStatus(400);
 
-  image.mv( process.cwd() + '/public/img/upload/' + image.name);
+  image.mv(process.cwd() + "/public/img/upload/" + image.name);
   res.sendStatus(200);
-})
+});
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     console.log("autheeedd");

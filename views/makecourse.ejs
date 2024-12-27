@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
+    <!-- style css -->
+    <link rel="stylesheet" href="/css/cssreset.css" />
+    <link rel="stylesheet" href="/css/buatcourse.css" />
+
+    <title>Buat Course</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-section">
+            <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+        </div>
+        <div class="search-section">
+            <input type="search" name="course-search" placeholder="Cari kursus" />
+        </div>
+        <ul class="menu">
+            <li><a href="#kursus">Semua Kursus</a></li>
+            <li><a href="tentangkami.html">Tentang Kami</a></li>
+            <li><a href="">Kontak</a></li>
+        </ul>
+        <details class="dropdown">
+            <summary>
+                <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+            </summary>
+            <ul>
+                <li><img src="/img/user-profile-square.png" /><a href="#">Profile Saya</a></li>
+                <li><img src="/img/cart.png" /><a href="#">Daftar Tutorial</a></li>
+                <li><img src="/img/settings.png" /><a href="#">Pengaturan</a></li>
+                <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
+            </ul>
+        </details>
+    </nav>
+    <form action="/create-course" method="post">
+        <div class="container">
+            <!-- Bagian Judul -->
+            <header class="judul-section">
+                <div class="form-field">
+                    <label for="judul">Judul</label>
+                    <input type="text" id="judul" name="judul" placeholder="Masukkan judul" />
+                </div>
+                <div class="form-field">
+                    <label for="genre">Genre</label>
+                    <input type="text" id="genre" name="type" placeholder="Masukkan genre" />
+                </div>
+                <div class="form-field">
+                    <label for="pekerjaan">Perkiraan Waktu</label>
+                    <input type="text" id="pekerjaan" name="durasi" placeholder="Masukkan perkiraan waktu" />
+                </div>
+                <button class="add-image-btn">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/add-image.png"
+                        alt="Tambahkan Gambar" />
+                </button>
+            </header>
+
+            <!-- Bagian Ringkasan -->
+            <section class="ringkasan-section">
+                <h2>Ringkasan</h2>
+                <textarea id="ringkasan" name="ringkasan" placeholder="Masukkan ringkasan..."></textarea>
+            </section>
+
+            <!-- sub Judul -->
+            <div id="subjudul-container" class="subjudul-container"></div>
+
+            <div class="icon-container">
+                <button id="add-btn" class="icon-button" type="button">
+                    <img src="/icon/add-button.png" alt="Tambah" />
+                </button>
+                <button id="remove-btn" class="icon-button" type="button">
+                    <img src="/icon/remove.png" alt="Hapus" />
+                </button>
+            </div>
+
+            <!-- Tombol Upload -->
+            <button class="upload-icon">
+                <img src="https://img.icons8.com/material-outlined/24/000000/upload.png" alt="Upload" />
+            </button>
+    </form>
+    <!-- java scripts -->
+    <script src="/scripts/addremove.js"></script>
+</body>
+
+</html>
