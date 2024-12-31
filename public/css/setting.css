@@ -1,0 +1,269 @@
+/* Styling untuk Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  margin-bottom: auto;
+  height: 40px;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk dropdown */
+.dropdown {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Styling untuk details dan summary */
+.dropdown summary {
+  font-size: 14px; /* Mengecilkan teks di dalam summary */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam summary */
+.dropdown summary img {
+  width: 30px; /* Mengecilkan ukuran gambar */
+  height: 30px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk list di dalam dropdown */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling untuk <li> di dalam dropdown */
+.dropdown ul li {
+  font-size: 12px; /* Mengecilkan ukuran teks dalam item list */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam <li> */
+.dropdown ul li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Styling untuk link dalam <li> */
+.dropdown ul li a {
+  font-size: 12px;
+}
+
+/* General Container */
+.container {
+  max-width: 1300px; /* Batasi lebar maksimal */
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  padding: 5px; /* Kurangi padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h2 {
+  font-size: 24px;
+}
+
+.profile-header {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  padding-left: 70px; /* Geser konten ke kanan */
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 40px; /* Menambahkan margin ke kanan */
+  border: 2px solid #4caf50;
+}
+
+.upload-avatar {
+  display: none;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  margin-top: 5px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Sidebar */
+.sidebar {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-right: none;
+}
+
+/* Menu Sidebar */
+.menu-side {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-side li {
+  margin-bottom: 10px;
+}
+
+.menu-side li a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px; /* Kurangi padding */
+  display: block;
+  border-radius: 5px;
+  font-size: 14px; /* Perkecil teks */
+}
+
+.menu-side li a.active {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.delete-divider {
+  border-top: 1px solid #ccc;
+  margin-top: 130%;
+  width: 120%;
+  margin-left: auto;
+  margin-right: auto; /* Pusatkan garis */
+}
+
+.delete-account {
+  color: #ff4d4d;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.delete-account:hover {
+  text-decoration: underline;
+}
+
+/* Profile Form */
+.profile-form {
+  flex-grow: 1;
+  max-width: 800px; /* Batasi lebar maksimal */
+  margin-left: auto;
+  margin-right: auto; /* Pusatkan form */
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 20px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-actions .save-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.save-btn:hover {
+  background-color: #004d00;
+}

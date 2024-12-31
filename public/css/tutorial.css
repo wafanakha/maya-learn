@@ -6,7 +6,6 @@ nav {
   padding: 10px 60px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
   top: 0;
   z-index: 100;
 }
@@ -114,8 +113,8 @@ nav {
 }
 
 .sidebar ul li a:hover {
-  text-decoration: underline; /* Memberikan garis bawah saat hover */
-  color: #0056b3; /* Mengubah warna saat hover */
+  text-decoration: underline;
+  color: #0056b3;
 }
 
 /* Content */
@@ -130,8 +129,8 @@ nav {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://kinsta.com/wp-content/uploads/2020/10/laravel-tutorial-1024x512.jpg");
   background-position: center; /* Menempatkan gambar di tengah */
   color: white;
-  padding: 60px; /* Menambahkan padding agar konten terlihat lebih baik */
-  position: relative; /* Agar elemen overlay bisa digunakan */
+  padding: 60px;
+  position: relative;
 }
 
 .course-header img.course-image {
@@ -184,8 +183,8 @@ nav {
 .lesson button {
   background-color: #0a6061;
   color: white;
-  margin: 70px;
-  font-size: 16px;
+  margin: 100px;
+  font-size: 14px;
   padding: 10px 200px;
   border: none;
   border-radius: 5px;

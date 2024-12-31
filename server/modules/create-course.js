@@ -1,52 +1,30 @@
 const database = require("../../database/mysql.js");
 
 module.exports = (req, res) => {
-  const { judul, type, durasi, ringkasan } = req.body;
-  database.query(
-    "SELECT * FROM course_master WHERE user_id = ?",
-    [req.user.user_id],
-    (err, coursemaster) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      if (coursemaster[0] == undefined) {
-        database.query(
-          "INSERT INTO course_master(jumlah_course, user_id) VALUES (?,?)",
-          [0, req.user.user_id],
-          (err) => {
-            if (err) {
-              console.log(err.stack);
-              return;
-            }
-            console.log("insert new course master success!!");
-          }
-        );
-      }
-      database.query(
-        "UPDATE course_master SET jumlah_course = jumlah_course + 1 WHERE user_id = ?",
-        [req.user.user_id],
-        (err) => {
-          if (err) {
-            console.log(err.stack);
-            return;
-          }
-          console.log("update course master success!");
-        }
-      );
-    }
-  );
+  const { judul, type, durasi, ringkasan, stepTitle, stepText } = req.body;
 
   database.query(
-    "INSERT INTO tutorial(judul, tipe, durasi, isi_course, coursemaster_id) VALUES (?,?,?,?,?)",
-    [judul, type, durasi, ringkasan, req.user.coursemaster_id],
+    "INSERT INTO tutorial(judul, tipe, durasi, isi_course, user_id) VALUES (?,?,?,?,?)",
+    [judul, type, durasi, ringkasan, req.user.user_id],
     (err) => {
       if (err) {
         console.log(err.stack);
-        res.redirect("/dashboard");
         return;
       }
-      res.redirect("/tutorial");
     }
   );
+  for (let i = 0; i < stepTitle.length; i++) {
+    database.query(
+      "INSERT INTO step SET judul_step = ?, isi_table = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
+      [stepTitle[i], stepText[i], judul],
+      (err) => {
+        if (err) {
+          console.log(err.stack);
+          return;
+        }
+        console.log("horreeee!");
+        res.redirect("/tutorial");
+      }
+    );
+  }
 };

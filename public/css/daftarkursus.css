@@ -1,0 +1,376 @@
+/* Styling untuk Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Styling untuk logo */
+.logo-section img {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Styling untuk input pencarian */
+.search-section input {
+  margin-bottom: auto;
+  height: 40px;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling untuk menu */
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+/* Styling untuk dropdown */
+.dropdown {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Styling untuk details dan summary */
+.dropdown summary {
+  font-size: 14px; /* Mengecilkan teks di dalam summary */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam summary */
+.dropdown summary img {
+  width: 30px; /* Mengecilkan ukuran gambar */
+  height: 30px;
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Styling untuk list di dalam dropdown */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling untuk <li> di dalam dropdown */
+.dropdown ul li {
+  font-size: 12px; /* Mengecilkan ukuran teks dalam item list */
+  display: flex;
+  align-items: center;
+}
+
+/* Styling untuk gambar dalam <li> */
+.dropdown ul li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Styling untuk link dalam <li> */
+.dropdown ul li a {
+  font-size: 12px;
+}
+
+/* Styling untuk gambar profil */
+.profile-image {
+  width: 40px;
+  height: 40px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px;
+  background-color: #0a6061;
+  border-radius: 8px;
+  margin: 10px auto;
+  width: 100%;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  margin-left: 20%;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  background-color: #ffd700;
+  padding: 5px;
+  object-fit: cover;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.info-text h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #ffff;
+}
+
+.info-text p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #ffff;
+}
+
+.edit-profile {
+  padding: 10px 40px;
+  background-color: transparent;
+  color: #ffff;
+  border: 2px solid #ffff;
+  border-radius: 5px;
+  margin-right: 10%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.edit-profile:hover {
+  background-color: #00a2d1;
+  color: #fff;
+}
+
+.social-links {
+  width: 80%;
+  margin: 20px auto;
+  padding: 30px; /* Jarak dalam elemen */
+  background-color: white; /* Latar belakang putih */
+  border: 2px solid #004d4d; /* Border hijau */
+  border-radius: 8px; /* Sudut membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  font-family: Arial, sans-serif; /* Font */
+  font-size: 18px; /* Ukuran font */
+}
+
+.social-links p {
+  margin: 10px 0; /* Jarak antar paragraf */
+  color: #333; /* Warna teks */
+}
+
+.container-progress {
+  max-width: 800px;
+  margin: auto;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 18px;
+}
+
+.header a {
+  text-decoration: none;
+  color: #1e88e5;
+  font-size: 14px;
+}
+
+.header select {
+  padding: 8px 12px;
+  max-width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 40px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-content p {
+  margin: 10px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.card-content .details {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #888;
+}
+
+.progress {
+  text-align: center;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.progress-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #ddd;
+  border-top-color: #007bff;
+  position: relative;
+}
+
+.progress-circle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.container-tutorial {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-tutorial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-tutorial h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 20px;
+}
+
+.header-tutorial a {
+  text-decoration: none;
+  color: #1e88e5;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card-tutorial {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card-tutorial:hover {
+  transform: translateY(-5px);
+}
+
+.card-tutorial img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 10px;
+}
+
+.card-author {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+.add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #666;
+  border: 2px dashed #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.add-card:hover {
+  border-color: #1e88e5;
+  color: #1e88e5;
+}

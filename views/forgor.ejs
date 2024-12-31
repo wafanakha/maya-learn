@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Picocss -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-    <!-- style csss -->
-    <link rel="stylesheet" href="/css/cssreset.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Maya-Learn</title>
-  </head>
-  <body>
-    <nav>
-      <div class="logo-section">
-        <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
-      </div>
-      <div class="search-section">
-        <input type="search" name="course-search" placeholder="Cari kursus" />
-      </div>
-      <ul class="menu">
-        <li><a href="">Semua Kursus</a></li>
-        <li><a href="">Tentang Kami</a></li>
-        <li><a href="">Kontak</a></li>
-        <button class="outline">Masuk</button>
-        <button>Daftar</button>
-      </ul>
-    </nav>
-    <div class="Ubah Password">
-      <form action="/forgor" method="post">
+  <!-- Picocss -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <!-- style csss -->
+  <link rel="stylesheet" href="/css/cssreset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <title>Maya-Learn</title>
+</head>
+
+<body>
+  <nav>
+    <div class="logo-section">
+      <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+    </div>
+    <div class="search-section">
+      <input type="search" name="course-search" placeholder="Cari kursus" />
+    </div>
+    <ul class="menu">
+      <li><a href="">Semua Kursus</a></li>
+      <li><a href="">Tentang Kami</a></li>
+      <li><a href="">Kontak</a></li>
+      <button class="outline">Masuk</button>
+      <button>Daftar</button>
+    </ul>
+  </nav>
+  <div class="Ubah Password">
+    <form action="/forgor" method="post">
       <div class="container">
-        
+
         <img src="/img/loginn.png" alt="Ilustrasi wanita dengan laptop" class="login-image" />
         <div class="content">
           <h1>Lupa Password</h1>
           <h2>Email</h2>
-          <input type="email" name="email" placeholder="Masukkan Email" autocomplete="email" aria-label="Email" aria-describedby="email-helper" />
-          <button type="button" onclick="showAlert()">Masuk</button>
+          <input type="email" name="email" placeholder="Masukkan Email" autocomplete="email" aria-label="Email"
+            aria-describedby="email-helper" />
+          <button type="submit" onclick="showAlert()">Kirim</button>
           <div class="link-center">
             <a href="/daftar">Belum punya Akun?</a>
           </div>
         </div>
       </div>
-      </form>
-    </div>
-    <script src="/scripts/scripts.js"></script>
-  </body>
+    </form>
+  </div>
+  <script src="/scripts/scripts.js"></script>
+</body>
+
 </html>

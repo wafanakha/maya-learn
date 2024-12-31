@@ -37,7 +37,7 @@ function initialize(passport) {
   passport.serializeUser((user, done) => done(null, user.user_id));
   passport.deserializeUser((id, done) => {
     database.query(
-      "SELECT * FROM user JOIN course_master ON course_master.user_id = user.user_id WHERE user.user_id = ?",
+      "select * from user where user.user_id = ?",
       [id],
       (err, user) => {
         if (err) {

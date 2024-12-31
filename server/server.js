@@ -14,10 +14,9 @@ const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
-
 const methodOverride = require("method-override");
-
+const multer = require("multer");
+const path = require("path");
 database.query(
   "SELECT * FROM user WHERE email = ?",
   ["wafanakha17@gmail.com"],
@@ -32,11 +31,11 @@ database.query(
 
 app.set("view-engine", "ejs");
 
-app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 app.use(
   session({
@@ -45,14 +44,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(
-  fileUpload({
-    limits: {
-      fileSize: 10000000,
-    },
-    abortOnLimit: true,
-  })
-);
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
@@ -60,6 +52,22 @@ app.use(methodOverride("_method"));
 
 const initializePassport = require("./modules/passport-config.js");
 initializePassport(passport);
+
+const diskStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(process.cwd(), "/public/img/upload/"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.filename + "-" + path.extname(file.originalname));
+  },
+  fileFilter: function (req, file, callback) {
+    const isPhoto = file.mimetype.indexOf("image/") === 0;
+    if (isPhoto) {
+    } else {
+      callback({ message: "An optional error message" }, false); // false if invalid
+    }
+  },
+});
 
 app.get("/", (req, res) => {
   res.render("login.ejs");
@@ -85,9 +93,17 @@ app.get("/nyoba", (req, res) => {
 });
 app.get("/create-course", checkAuth, async (req, res) => {
   res.render("makecourse.ejs");
-  console.log(await req.user);
+  console.log(req.user);
 });
-
+app.get("/aboutus", (req, res) => {
+  res.render("aboutus.ejs");
+});
+app.get("/course-progress", (req, res) => {
+  res.render("courseprogress.ejs");
+});
+app.get("/mycourse", (req, res) => {
+  res.render("mycourse.ejs");
+});
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
 });
@@ -101,7 +117,13 @@ app.post(
     failureFlash: true,
   })
 );
-app.post("/create-course", checkAuth, (req, res) => {
+
+const ccupload = multer({ storage: diskStorage }).fields([
+  { name: "tumbnailImg" },
+  { name: "stepImg" },
+]);
+
+app.post("/create-course", checkAuth, ccupload, (req, res) => {
   createCourse(req, res);
 });
 
@@ -113,7 +135,7 @@ app.get("/reset/:token", (req, res) => {
   tokenAuth(req, res);
 });
 
-app.post("/reset", (req, res) => {
+app.post("/reset/", (req, res) => {
   reset(req, res);
 });
 
@@ -126,15 +148,6 @@ app.delete("/logout", (req, res) => {
   });
 });
 
-app.post("/nyoba", (req, res) => {
-  const { image } = req.files;
-  if (!image) return res.sendStatus(400);
-
-  if (!/^image/.test(image.mimetype)) return res.sendStatus(400);
-
-  image.mv(process.cwd() + "/public/img/upload/" + image.name);
-  res.sendStatus(200);
-});
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     console.log("autheeedd");
