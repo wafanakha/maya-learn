@@ -1,4 +1,4 @@
-const database = require("../database/mysql.js");
+const database = require("../../database/mysql.js");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {

@@ -1,4 +1,4 @@
-const database = require("../database/mysql.js");
+const database = require("../../database/mysql.js");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
 

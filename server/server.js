@@ -2,10 +2,11 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const database = require("../database/mysql.js");
-const daftar = require("./daftar.js");
-const forgor = require("./forgor.js");
-const tokenAuth = require("./tokenreset.js");
-const reset = require("./reset.js");
+const daftar = require("./modules/daftar.js");
+const forgor = require("./modules/forgor.js");
+const tokenAuth = require("./modules/tokenreset.js");
+const reset = require("./modules/reset.js");
+const createCourse = require("./modules/create-course.js");
 
 const express = require("express");
 const app = express();
@@ -28,9 +29,6 @@ database.query(
     console.log(user[0]);
   }
 );
-
-const initializePassport = require("./passport-config");
-initializePassport(passport);
 
 app.set("view-engine", "ejs");
 
@@ -57,7 +55,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate("session"));
 app.use(methodOverride("_method"));
+
+const initializePassport = require("./modules/passport-config.js");
+initializePassport(passport);
 
 app.get("/", (req, res) => {
   res.render("login.ejs");
@@ -72,6 +74,7 @@ app.get("/daftar", checkNotAuth, (req, res) => {
   res.render("daftar.ejs");
 });
 app.get("/dashboard", checkAuth, (req, res) => {
+  console.log(req.user);
   res.render("dashboard.ejs");
 });
 app.get("/tutorial", (req, res) => {
@@ -80,8 +83,9 @@ app.get("/tutorial", (req, res) => {
 app.get("/nyoba", (req, res) => {
   res.render("nyoba.ejs");
 });
-app.get("/make-course", checkAuth, (req, res) => {
+app.get("/create-course", checkAuth, async (req, res) => {
   res.render("makecourse.ejs");
+  console.log(await req.user);
 });
 
 app.post("/daftar", checkNotAuth, (req, res) => {
@@ -93,12 +97,12 @@ app.post(
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/login",
+    session: true,
     failureFlash: true,
   })
 );
-
 app.post("/create-course", checkAuth, (req, res) => {
-  console.log("fuck");
+  createCourse(req, res);
 });
 
 app.post("/forgor", checkNotAuth, (req, res) => {

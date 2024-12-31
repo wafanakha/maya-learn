@@ -1,7 +1,7 @@
 const { authenticate } = require("passport");
 const bcrypt = require("bcrypt");
 const Local = require("passport-local").Strategy;
-const database = require("../database/mysql.js");
+const database = require("../../database/mysql.js");
 
 function initialize(passport) {
   const autentikasiUser = (email, password, done) => {
@@ -36,19 +36,17 @@ function initialize(passport) {
   passport.use(new Local({ usernameField: "email" }, autentikasiUser));
   passport.serializeUser((user, done) => done(null, user.user_id));
   passport.deserializeUser((id, done) => {
-    return done(
-      null,
-      database.query(
-        "SELECT * FROM user WHERE user_id = ?",
-        [id],
-        (err, user) => {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          return user[0];
+    database.query(
+      "SELECT * FROM user JOIN course_master ON course_master.user_id = user.user_id WHERE user.user_id = ?",
+      [id],
+      (err, user) => {
+        if (err) {
+          console.log(err);
+          done(null);
+          return;
         }
-      )
+        done(null, user[0]);
+      }
     );
   });
 }
