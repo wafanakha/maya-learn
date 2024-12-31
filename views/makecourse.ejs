@@ -52,44 +52,36 @@
                 </div>
                 <div class="form-field">
                     <label for="pekerjaan">Perkiraan Waktu</label>
-                    <input type="text" name="durasi" id="pekerjaan" placeholder="Masukkan perkiraan waktu" />
+                    <input type="text" id="pekerjaan" name="durasi" placeholder="Masukkan perkiraan waktu" />
                 </div>
-
-                <!-- Tombol untuk upload gambar -->
-                <button class="add-image-btn" type="button">
-                    <img src="https://img.icons8.com/material-outlined/24/000000/add-image.png"
-                        alt="Tambahkan Gambar" />
-                </button>
-                <input type="file" class="thumbnail-input upload-input" name="tumbnailImg" display: none;" />
-            </header>
-
-            <section class="ringkasan-section">
-                <h2>Ringkasan</h2>
-                <textarea id="ringkasan" name="ringkasan" placeholder="Masukkan ringkasan..."></textarea>
-            </section>
-
-            <!-- Sub Judul -->
-            <div class="subjudul-card">
-                <input type="text" class="subjudul-input" name="stepTitle" placeholder="Sub Judul">
                 <div class="deskripsi-wrapper">
-                    <textarea class="deskripsi-area" name="stepText" placeholder="Deskripsi"></textarea>
+                    <textarea class="deskripsi-area" placeholder="Upload Gambar"></textarea>
 
                     <!-- Tombol untuk upload gambar -->
                     <button class="add-image-btn" type="button">
                         <img src="https://img.icons8.com/material-outlined/24/000000/add-image.png"
                             alt="Tambahkan Gambar">
                     </button>
-                    <input type="file" class="thumbnail-input upload-input" name="stepImg" style="display: none;" />
+                    <input type="file" class="thumbnail-input upload-input" name="tumbnailImg" style="display: none;" />
                 </div>
-            </div>
+                <!-- Tombol untuk upload gambar -->
+            </header>
+
+            <!-- Bagian Ringkasan -->
+            <section class="ringkasan-section">
+                <h2>Ringkasan</h2>
+                <textarea id="ringkasan" name="ringkasan" placeholder="Masukkan ringkasan..."></textarea>
+            </section>
+
+
 
             <div id="subjudul-container" class="subjudul-container"></div>
 
             <div class="icon-container">
-                <button id="add-btn" type="button" class="icon-button">
+                <button id="add-btn" class="icon-button" type="button">
                     <img src="/icon/add-button.png" alt="Tambah" />
                 </button>
-                <button id="remove-btn" type="button" class="icon-button">
+                <button id="remove-btn" class="icon-button" type="button">
                     <img src="/icon/remove.png" alt="Hapus" />
                 </button>
             </div>
@@ -98,12 +90,12 @@
             <button class="upload-icon">
                 <img src="https://img.icons8.com/material-outlined/24/000000/upload.png" alt="Upload" />
             </button>
+
+            <!-- java scripts -->
+            <script src="/scripts/addremove.js"></script>
+            <script src="/scripts/upload.js"></script>
+        </div>
     </form>
-
-    <!-- java scripts -->
-    <script src="/scripts/addremove.js"></script>
-    <script src="/scripts/upload.js"></script>
-
 </body>
 
 </html>

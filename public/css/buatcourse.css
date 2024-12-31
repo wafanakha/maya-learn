@@ -225,6 +225,10 @@ nav {
 
 .deskripsi-wrapper {
   position: relative;
+
+  justify-content: center; /* Mengatur gambar di tengah secara horizontal */
+  align-items: center; /* Mengatur gambar di tengah secara vertikal */
+  text-align: center;
 }
 
 .deskripsi-area {
