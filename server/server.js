@@ -58,14 +58,10 @@ const diskStorage = multer.diskStorage({
     cb(null, path.join(process.cwd(), "/public/img/upload/"));
   },
   filename: function (req, file, cb) {
-    cb(null, file.filename + "-" + path.extname(file.originalname));
-  },
-  fileFilter: function (req, file, callback) {
-    const isPhoto = file.mimetype.indexOf("image/") === 0;
-    if (isPhoto) {
-    } else {
-      callback({ message: "An optional error message" }, false); // false if invalid
-    }
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + file.originalname.match(/\..*$/)[0]
+    );
   },
 });
 
@@ -118,14 +114,19 @@ app.post(
   })
 );
 
-const ccupload = multer({ storage: diskStorage }).fields([
-  { name: "tumbnailImg" },
-  { name: "stepImg" },
-]);
+const ccupload = multer({ storage: diskStorage });
 
-app.post("/create-course", checkAuth, ccupload, (req, res) => {
-  createCourse(req, res);
-});
+app.post(
+  "/create-course",
+  checkAuth,
+  ccupload.fields([
+    { name: "tumbnailImg", maxCount: 1 },
+    { name: "stepImg", maxCount: 30 },
+  ]),
+  (req, res) => {
+    createCourse(req, res);
+  }
+);
 
 app.post("/forgor", checkNotAuth, (req, res) => {
   forgor(req, res);
