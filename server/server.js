@@ -100,6 +100,13 @@ app.get("/course-progress", (req, res) => {
 app.get("/mycourse", (req, res) => {
   res.render("mycourse.ejs");
 });
+app.get("/profile", checkAuth, (req, res) => {
+  res.render("profile.ejs", {
+    name: req.user.username,
+    email: req.user.email,
+  });
+});
+
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
 });
@@ -127,6 +134,21 @@ app.post(
     createCourse(req, res);
   }
 );
+
+app.post("/profile", (req, res) => {
+  const { name, email } = req.body;
+  database.query(
+    "UPDATE user SET username = ?, email = ?",
+    [name, email],
+    (err) => {
+      if (err) {
+        console.log(err.stack);
+        return;
+      }
+      res.redirect("/profile");
+    }
+  );
+});
 
 app.post("/forgor", checkNotAuth, (req, res) => {
   forgor(req, res);
