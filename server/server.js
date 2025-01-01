@@ -13,7 +13,6 @@ const app = express();
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
-const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
@@ -31,11 +30,7 @@ database.query(
 
 app.set("view-engine", "ejs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 app.use(
   session({
@@ -48,6 +43,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride("_method"));
 
 const initializePassport = require("./modules/passport-config.js");
@@ -225,6 +222,7 @@ app.get("/reset/:token", (req, res) => {
 });
 
 app.post("/reset/", (req, res) => {
+  console.log(req.body);
   reset(req, res);
 });
 

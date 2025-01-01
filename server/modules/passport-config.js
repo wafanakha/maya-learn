@@ -17,7 +17,9 @@ function initialize(passport) {
         user = user[0];
         if (user == undefined) {
           console.log("user");
-          return done(null, false, { message: "Tidak ada user dengan email" });
+          return done(null, false, {
+            message: "email",
+          });
         }
         console.log(user);
 
@@ -25,7 +27,7 @@ function initialize(passport) {
           if (await bcrypt.compare(password, user.password)) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Password salah" });
+            return done(null, false, { message: "password" });
           }
         } catch (e) {
           return done(e);

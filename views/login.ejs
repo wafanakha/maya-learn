@@ -32,21 +32,52 @@
         <div class="content">
           <h1>Login</h1>
           <h2>Email</h2>
-          <input type="email" name="email" placeholder="name@domail.com" autocomplete="email" aria-label="Email"
-            aria-describedby="email-helper" />
-          <h2>Password</h2>
-          <div class="password-wrapper">
-            <input type="password" id="password" name="password" placeholder="Masukkan password" aria-label="Password"
-              autocomplete="current-password" />
-            <img src="/img/eye-close.png" id="eye-icon" />
-          </div>
-          <div class="link-right">
-            <a href="/daftar">Lupa Password?</a>
-          </div>
-          <button type="submit">Masuk</button>
-          <div class="link-center">
-            <a href="/daftar">Belum punya Akun?</a>
-          </div>
+          <% if(messages.error) { %>
+            <% if(messages.error=="email" ) {%>
+              <input type="email" name="email" placeholder="name@domail.com" autocomplete="email" aria-label="Email"
+                aria-describedby="email-helper" aria-invalid="true" aria-describedby="invalid-helper" required />
+              <small id="invalid-helper">
+                Tidak ditemukan user dengan Email tersebut!
+              </small>
+              <% } else {%>
+                <input type="email" name="email" placeholder="name@domail.com" autocomplete="email" aria-label="Email"
+                  aria-describedby="email-helper" required />
+                <% } %>
+                  <% if(messages.error=="password" ) {%>
+                    <h2>Password</h2>
+                    <div class="password-wrapper">
+                      <input type="password" id="password" name="password" placeholder="Masukkan password"
+                        aria-label="Password" autocomplete="current-password" aria-invalid="true"
+                        aria-describedby="invalid-helper" required />
+                    </div>
+                    <small id="invalid-helper">
+                      Password Salah!
+                    </small>
+                    <% } else {%>
+                      <h2>Password</h2>
+                      <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password"
+                          aria-label="Password" autocomplete="current-password" required />
+                      </div>
+                      <% } %>
+
+                        <% } else { %>
+                          <input type="email" name="email" placeholder="name@domail.com" autocomplete="email"
+                            aria-label="Email" aria-describedby="email-helper" required />
+                          <h2>Password</h2>
+                          <div class="password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Masukkan password"
+                              aria-label="Password" autocomplete="current-password" required />
+                          </div>
+                          <% } %>
+
+                            <div class="link-right">
+                              <a href="/daftar">Lupa Password?</a>
+                            </div>
+                            <button type="submit">Masuk</button>
+                            <div class="link-center">
+                              <a href="/daftar">Belum punya Akun?</a>
+                            </div>
         </div>
       </div>
     </form>

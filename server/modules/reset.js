@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const database = require("../../database/mysql.js");
 const bcrypt = require("bcrypt");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 module.exports = async (req, res) => {
   try {
