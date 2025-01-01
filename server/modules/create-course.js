@@ -17,17 +17,31 @@ module.exports = (req, res) => {
     }
   );
   for (let i = 0; i < stepTitle.length; i++) {
-    database.query(
-      "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
-      [stepTitle[i], stepText[i], stepImg[i].filename, judul],
-      (err) => {
-        if (err) {
-          console.log(err.stack);
-          return;
+    if (stepImg[i].originalname != "myFile.txt") {
+      database.query(
+        "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
+        [stepTitle[i], stepText[i], stepImg[i].filename, judul],
+        (err) => {
+          if (err) {
+            console.log(err.stack);
+            return;
+          }
+          console.log("horreeee!");
         }
-        console.log("horreeee!");
-      }
-    );
+      );
+    } else {
+      database.query(
+        "INSERT INTO step SET judul_step = ?, isi_table = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
+        [stepTitle[i], stepText[i], judul],
+        (err) => {
+          if (err) {
+            console.log(err.stack);
+            return;
+          }
+          console.log("horreeee!");
+        }
+      );
+    }
   }
   res.redirect("/dashboard");
 };

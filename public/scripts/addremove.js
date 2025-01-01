@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subjudulContainer = document.getElementById("subjudul-container");
   const addBtn = document.getElementById("add-btn");
   const removeBtn = document.getElementById("remove-btn");
-
+  let counter = 0;
   // Fungsi untuk membuat elemen subjudul baru
   const createSubjudul = () => {
     // Container utama untuk subjudul
@@ -54,7 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
     fileInput.setAttribute("type", "file");
     fileInput.setAttribute("name", "stepImg");
     fileInput.setAttribute("accept", "image/*");
+    fileInput.setAttribute("value", " ");
     fileInput.style.display = "none"; // Sembunyikan input file
+
+    const myFile = new File(["Hello World!"], "myFile.txt", {
+      type: "text/plain",
+      lastModified: new Date(),
+    });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(myFile);
+    fileInput.files = dataTransfer.files;
 
     // Event listener untuk membuka file input saat tombol tambah gambar diklik
     addImageBtn.addEventListener("click", () => {
@@ -105,7 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tambahkan subjudul baru saat tombol tambah diklik
   addBtn.addEventListener("click", () => {
     const newSubjudul = createSubjudul();
-    subjudulContainer.appendChild(newSubjudul); // Tambahkan ke container utama
+    subjudulContainer.appendChild(newSubjudul);
+    counter++; // Tambahkan ke container utama
   });
 
   // Hapus subjudul terakhir saat tombol hapus diklik

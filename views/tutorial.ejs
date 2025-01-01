@@ -96,8 +96,9 @@
                                 <p>
                                     <%= lessons[i].isi_table %>
                                 </p>
-                                <img src="/img/upload/<%= lessons[i].image %>" alt="Unity Lesson Image" />
-                                <button>Mark as completed</button>
+                                <% if(lessons[i].image !=null) {%>
+                                    <img src="/img/upload/<%= lessons[i].image %>" />
+                                    <% } %>
                             </div>
                             <% } %>
 

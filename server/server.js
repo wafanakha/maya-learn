@@ -194,6 +194,7 @@ app.post(
     { name: "stepImg", maxCount: 30 },
   ]),
   (req, res) => {
+    console.log(req.files);
     createCourse(req, res);
   }
 );

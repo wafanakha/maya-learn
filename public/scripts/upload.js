@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
           const deskripsiWrapper = input.closest(".deskripsi-wrapper"); // Mencari elemen terdekat dengan kelas .deskripsi-wrapper
 
           if (deskripsiWrapper) {
-            // Menghapus isi sebelumnya di deskripsi-wrapper, jika ada
             deskripsiWrapper.appendChild(imgPreview); // Menambahkan gambar sebagai preview
           }
         };

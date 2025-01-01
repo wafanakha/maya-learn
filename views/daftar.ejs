@@ -32,17 +32,16 @@
         <div class="content">
           <h1>Daftar</h1>
           <h2>Nama</h2>
-          <input name="username" placeholder="Nama" autocomplete="given-name" />
+          <input name="username" placeholder="Nama" autocomplete="name" required />
           <h2>Email</h2>
           <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
-            aria-describedby="email-helper" />
+            aria-describedby="email-helper" required />
           <h2>Password</h2>
           <div class="password-wrapper">
             <input type="password" id="password" name="password" placeholder="Masukkan password" aria-label="Password"
-              autocomplete="current-password" />
-            <img src="/img/eye-close.png" id="eye-icon" />
+              autocomplete="new-password" required />
           </div>
-          <button type="submit">Masuk</button>
+          <button type="submit">Daftar</button>
           <div class="link-center">
             <a href="/daftar">Sudah punya Akun?</a>
           </div>
