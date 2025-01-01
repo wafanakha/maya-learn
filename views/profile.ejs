@@ -15,20 +15,25 @@
 <body>
     <nav>
         <div class="logo-section">
-            <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+            <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
         </div>
 
         <ul class="menu">
-            <li><a href="">Semua Kursus</a></li>
-            <li><a href="">Tentang Kami</a></li>
+            <li><a href="/dashboard">Semua Tutorial</a></li>
+            <li><a href="/aboutus">Tentang Kami</a></li>
         </ul>
         <details class="dropdown">
             <summary>
                 <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
             </summary>
             <ul>
-                <li><img src="/img/user-profile-square.png" /><a href="#">Profile Saya</a></li>
-                <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
+                <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
+
+                <li><img src="/img/logout-04.png" />
+                    <form action="/logout?_method=DELETE" method="post"><a
+                            onclick="this.closest('form').submit();return false;">Keluar</a>
+                    </form>
+                </li>
             </ul>
         </details>
     </nav>
@@ -39,7 +44,13 @@
 
         <!-- Main Content -->
         <div class="main-content">
+            <aside class="sidebar">
+                <ul class="menu-side">
+                    <li><a href="/profile" class="active">Edit Profile</a></li>
+                    <li><a href="/Edittutorial">Edit tutorial</a></li>
+                </ul>
 
+            </aside>
 
             <!-- Profile Form -->
             <section class="profile-form">

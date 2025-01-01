@@ -12,87 +12,111 @@
 </head>
 
 <body>
-  <nav>
-    <div class="logo-section">
-      <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
-    </div>
+  <% if(isauth) {%>
+    <nav>
 
-    <ul class="menu">
-      <li><a href="/dashboard">Semua Kursus</a></li>
-      <li><a href="/aboutus">Tentang Kami</a></li>
-    </ul>
-    <details class="dropdown">
-      <summary>
-        <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
-      </summary>
-      <ul>
-        <li><img src="/img/user-profile-square.png" /><a href="#">Profile Saya</a></li>
-        <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
+      <div class="logo-section">
+        <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
+      </div>
+
+      <ul class="menu">
+        <li><a href="/dashboard">Semua Tutorial</a></li>
+        <li><a href="/aboutus">Tentang Kami</a></li>
       </ul>
-    </details>
-  </nav>
+      <details class="dropdown">
+        <summary>
+          <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+        </summary>
+        <ul>
+          <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
 
-  <article class="article-card">
-    <div class="content">
-      <h1>Mulai Perjalanan Belajar Anda di Sini</h1>
-      <p>
-        Kuasai keterampilan baru bersama instruktur ahli, kapan saja dan di
-        mana saja. Pilih dari berbagai kategori kursus yang dirancang untuk
-        mendukung kesuksesan Anda.
-      </p>
-      <button>Jelajahi Kursus</button>
-    </div>
-    <div class="image">
-      <img src="/img/dashboard1.png" alt="Ilustrasi Belajar" />
-    </div>
-  </article>
-
-  <article class="card-logo">
-    <div class="image-logo">
-      <img src="/img/logotransparan.png" alt="" />
-    </div>
-  </article>
-
-  <div class="carousel-container" id="kursus">
-    <button class="carousel-button" id="next-button" disabled>&lt;</button>
-    <div class="category-buttons">
-      <button class="outline">Data Science</button>
-      <button class="outline">Bisnis</button>
-      <button class="outline">Marketing</button>
-      <button class="outline">Data Science</button>
-      <button class="outline">Musik</button>
-    </div>
-    <button class="carousel-button" id="next-button">&gt;</button>
-  </div>
-
-  <div class="carousel">
-    <% lessons.forEach(lesson=> { %>
-      <a href="/coursedesc/<%=lesson.lesson_id%>" class="card">
-        <img src="img/upload/<%=lesson.tumb_image %>" />
-
-        <div class=" card-content">
-          <h3>
-            <%=lesson.judul%>
-          </h3>
-          <p>
-            <%=lesson.durasi%>
-          </p>
-          <p>
-            <%=lesson.tipe%>
-          </p>
-          <p class="by">
-            <%=lesson.username%>
-          </p>
+          <li><img src="/img/logout-04.png" />
+            <form action="/logout?_method=DELETE" method="post"><a
+                onclick="this.closest('form').submit();return false;">Keluar</a>
+            </form>
+          </li>
+        </ul>
+      </details>
+    </nav>
+    <% } else { %>
+      <nav>
+        <div class="logo-section">
+          <a href="/dashboard">
+            <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+          </a>
         </div>
-      </a>
-      <% }) %>
 
-  </div>
-  <div class="semua-kursus">
-    <a href="/create-course">Buat kursus<a />
-  </div>
+        <ul class="menu">
+          <li><a href="/dashboard">Semua Tutorial</a></li>
+          <li><a href="/aboutus">Tentang Kami</a></li>
+          <a href="/login"><button class="outline">Masuk</button></a>
+          <a href="/daftar"><button>Daftar</button></a>
+        </ul>
+      </nav>
+      <% } %>
 
-  <script src="/scripts/js.js"></script>
+
+        <article class="article-card">
+          <div class="content">
+            <h1>Mulai Perjalanan Belajar Anda di Sini</h1>
+            <p>
+              Kuasai keterampilan baru bersama instruktur ahli, kapan saja dan di
+              mana saja. Pilih dari berbagai kategori kursus yang dirancang untuk
+              mendukung kesuksesan Anda.
+            </p>
+            <button>Jelajahi Kursus</button>
+          </div>
+          <div class="image">
+            <img src="/img/dashboard1.png" alt="Ilustrasi Belajar" />
+          </div>
+        </article>
+
+        <article class="card-logo">
+          <div class="image-logo">
+            <img src="/img/logotransparan.png" alt="" />
+          </div>
+        </article>
+
+        <div class="carousel-container" id="kursus">
+          <button class="carousel-button" id="next-button" disabled>&lt;</button>
+          <div class="category-buttons">
+            <button class="outline">Data Science</button>
+            <button class="outline">Bisnis</button>
+            <button class="outline">Marketing</button>
+            <button class="outline">Data Science</button>
+            <button class="outline">Musik</button>
+          </div>
+          <button class="carousel-button" id="next-button">&gt;</button>
+        </div>
+
+        <div class="carousel">
+          <% lessons.forEach(lesson=> { %>
+            <a href="/coursedesc/<%=lesson.lesson_id%>" class="card">
+              <img src="img/upload/<%=lesson.tumb_image %>" />
+
+              <div class=" card-content">
+                <h3>
+                  <%=lesson.judul%>
+                </h3>
+                <p>
+                  <%=lesson.durasi%>
+                </p>
+                <p>
+                  <%=lesson.tipe%>
+                </p>
+                <p class="by">
+                  <%=lesson.username%>
+                </p>
+              </div>
+            </a>
+            <% }) %>
+
+        </div>
+        <div class="semua-kursus">
+          <a href="/create-course">Buat kursus<a />
+        </div>
+
+        <script src="/scripts/js.js"></script>
 </body>
 
 </html>

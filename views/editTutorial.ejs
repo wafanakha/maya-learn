@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- style css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/setting.css" />
+    <link rel="stylesheet" href="/css/profilemykursus.css" />
+    <title>Setting</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-section">
+            <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
+        </div>
+
+        <ul class="menu">
+            <li><a href="/dashboard">Semua Tutorial</a></li>
+            <li><a href="/aboutus">Tentang Kami</a></li>
+        </ul>
+        <details class="dropdown">
+            <summary>
+                <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+            </summary>
+            <ul>
+                <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
+
+                <li><img src="/img/logout-04.png" />
+                    <form action="/logout?_method=DELETE" method="post"><a
+                            onclick="this.closest('form').submit();return false;">Keluar</a>
+                    </form>
+                </li>
+            </ul>
+        </details>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <aside class="sidebar">
+                <ul class="menu-side">
+                    <li><a href="/profile">Edit Profile</a></li>
+                    <li><a href="/editTutorial" class="active">Edit tutorial</a></li>
+                </ul>
+
+            </aside>
+
+            <div class="container-tutorial">
+                <div class="header">
+                    <h1>Tutorial Milikmu</h1>
+                    <a href="#">Kembali</a>
+                </div>
+                <div class="grid">
+                    <!-- Example cards -->
+                    <% lessons.forEach(lesson=> { %>
+                        <div class="card">
+                            <img src="img/upload/<%=lesson.tumb_image %>" />
+                            <div class=" card-content">
+                                <h2 class="card-title">
+                                    <%=lesson.judul%>
+                                </h2>
+                                <p class="card-desc">
+                                    <%=lesson.durasi%>
+                                </p>
+                                <p class="card-desc">
+                                    <%=lesson.tipe%>
+                                </p>
+                                <p class="card-author">
+                                    <%=username%>
+                                </p>
+                            </div>
+                        </div>
+
+                        <% }) %>
+                            <!-- Add Card -->
+                            <a class="card add-card" href="/create-course">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

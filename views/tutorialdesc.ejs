@@ -14,58 +14,85 @@
 </head>
 
 <body>
-    <nav>
-        <div class="logo-section">
-            <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
-        </div>
-        <div class="search-section">
-            <input type="search" name="course-search" placeholder="Cari kursus" />
-        </div>
-        <ul class="menu">
-            <li><a href="">Semua Kursus</a></li>
-            <li><a href="">Tentang Kami</a></li>
-            <li><a href="">Kontak</a></li>
-            <button class="outline">Masuk</button>
-            <button>Daftar</button>
-        </ul>
-    </nav>
-    <section class="hero"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/upload/<%= lessons[0].tumb_image %>');">
-        <div class="course-header">
-            <img src="/img/upload/<%= lessons[0].tumb_image %>" class="course-image" />
-            <div class="course-info">
-                <h1>
-                    <%= lessons[0].judul %>
-                </h1>
-                <p>
-                    <%= lessons[0].tipe %> | <%= lessons[0].durasi %>
-                </p>
-                <p>
-                    <%= lessons[0].username %>
-                </p>
-            </div>
-        </div>
-    </section>
-    <!-- Content -->
-    <div class="content">
-        <div class="ringkasan">
-            <h2>Ringkasan</h2>
-            <p>
-                <%= lessons[0].isi_course %>
-            </p>
-        </div>
-        <div class="course-list">
-            <% lessons.forEach(lesson=> { %>
-                <li>
-                    <%= lesson.judul_step %>
-                </li>
+    <% if(isauth) {%>
+        <nav>
 
-                <% }) %>
-        </div>
-    </div>
-    <div class="cta">
-        <a href="/course/<%=lesson_id%>"><button>PELAJARI</button></a>
-    </div>
+            <div class="logo-section">
+                <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
+            </div>
+
+            <ul class="menu">
+                <li><a href="/dashboard">Semua Tutorial</a></li>
+                <li><a href="/aboutus">Tentang Kami</a></li>
+            </ul>
+            <details class="dropdown">
+                <summary>
+                    <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+                </summary>
+                <ul>
+                    <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
+
+                    <li><img src="/img/logout-04.png" />
+                        <form action="/logout?_method=DELETE" method="post"><a
+                                onclick="this.closest('form').submit();return false;">Keluar</a>
+                        </form>
+                    </li>
+                </ul>
+            </details>
+        </nav>
+        <% } else { %>
+            <nav>
+                <div class="logo-section">
+                    <a href="/dashboard">
+                        <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+                    </a>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="/dashboard">Semua Tutorial</a></li>
+                    <li><a href="/aboutus">Tentang Kami</a></li>
+                    <a href="/login"><button class="outline">Masuk</button></a>
+                    <a href="/daftar"><button>Daftar</button></a>
+                </ul>
+            </nav>
+            <% } %>
+                <section class="hero"
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/upload/<%= lessons[0].tumb_image %>');">
+                    <div class="course-header">
+                        <img src="/img/upload/<%= lessons[0].tumb_image %>" class="course-image" />
+                        <div class="course-info">
+                            <h1>
+                                <%= lessons[0].judul %>
+                            </h1>
+                            <p>
+                                <%= lessons[0].tipe %> | <%= lessons[0].durasi %>
+                            </p>
+                            <p>
+                                <%= lessons[0].username %>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Content -->
+                <div class="content">
+                    <div class="ringkasan">
+                        <h2>Ringkasan</h2>
+                        <p>
+                            <%= lessons[0].isi_course %>
+                        </p>
+                    </div>
+                    <div class="course-list">
+                        <% lessons.forEach(lesson=> { %>
+                            <li>
+                                <%= lesson.judul_step %>
+                            </li>
+
+                            <% }) %>
+                    </div>
+                </div>
+                <div class="cta">
+                    <a href="/course/<%=lesson_id%>"><button>PELAJARI</button></a>
+                </div>
 </body>
 
 </html>

@@ -92,6 +92,7 @@ app.get("/dashboard", (req, res) => {
       console.log(lessons);
       res.render("dashboard.ejs", {
         lessons: lessons,
+        isauth: req.isAuthenticated(),
       });
     }
   );
@@ -107,14 +108,10 @@ app.get("/create-course", checkAuth, async (req, res) => {
 });
 
 app.get("/aboutus", (req, res) => {
-  res.render("aboutus.ejs");
+  res.render("aboutus.ejs", { isauth: req.isAuthenticated() });
 });
 
-app.get("/course-progress", (req, res) => {
-  res.render("courseprogress.ejs");
-});
-
-app.get("/mycourse", (req, res) => {
+app.get("/editTutorial", (req, res) => {
   database.query(
     "SELECT * FROM tutorial WHERE user_id=?",
     [req.user.user_id],
@@ -122,7 +119,7 @@ app.get("/mycourse", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      res.render("mycourse.ejs", {
+      res.render("editTutorial.ejs", {
         lessons: lessons,
         username: req.user.username,
       });
@@ -150,6 +147,7 @@ app.get("/coursedesc/:lesson_id", (req, res) => {
       res.render("tutorialdesc.ejs", {
         lesson_id: lesson_id,
         lessons: lessons,
+        isauth: req.isAuthenticated(),
       });
     }
   );
@@ -168,6 +166,7 @@ app.get("/course/:lesson_id", (req, res) => {
       res.render("tutorial.ejs", {
         lesson_id: lesson_id,
         lessons: lessons,
+        isauth: req.isAuthenticated(),
       });
     }
   );

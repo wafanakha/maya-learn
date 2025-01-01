@@ -11,51 +11,78 @@
 </head>
 
 <body>
-    <nav>
-        <div class="logo-section">
-            <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
-        </div>
+    <% if(isauth) {%>
+        <nav>
 
-        <ul class="menu">
-            <li><a href="/dashboard">Semua Kursus</a></li>
-            <li><a href="/aboutus">Tentang Kami</a></li>
-        </ul>
-        <details class="dropdown">
-            <summary>
-                <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
-            </summary>
-            <ul>
-                <li><img src="/img/user-profile-square.png" /><a href="#">Profile Saya</a></li>
-                <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
+            <div class="logo-section">
+                <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
+            </div>
+
+            <ul class="menu">
+                <li><a href="/dashboard">Semua Tutorial</a></li>
+                <li><a href="/aboutus">Tentang Kami</a></li>
             </ul>
-        </details>
-    </nav>
-    <div class="tentang-container">
-        <!-- Deskripsi Section -->
-        <div class="description-section">
-            <div class="text-content">
-                <img src="/img/logotransparan.png" alt="Logo Maya Learn" class="logo" />
-                <h2>Apa Itu MAYA LEARN?</h2>
-                <p>
-                    MAYA LEARN adalah platform pembelajaran online yang lengkap dan inovatif, dirancang untuk membantu
-                    Anda mencapai potensi penuh. Dengan ribuan kursus berkualitas tinggi yang mencakup berbagai bidang,
-                    dari pengembangan diri hingga
-                    keterampilan teknis, MAYA LEARN memberikan akses mudah ke pengetahuan yang Anda butuhkan untuk
-                    tumbuh dan berkembang.
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="/img/tentang1.png" alt="Illustrasi wanita" class="deskripsi-image" />
-            </div>
-        </div>
+            <details class="dropdown">
+                <summary>
+                    <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+                </summary>
+                <ul>
+                    <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
 
-        <!-- Misi Section -->
-        <div class="mission-section">
-            <p>Kami memiliki misi untuk membangun komunitas terbaik di dunia bagi para kreator untuk berbagi,
-                berkembang, dan mendapatkan pekerjaan.</p>
-            <img src="/img/young-businesswoman-with-co-workers 1.png" alt="Gambar Tim" class="tim-image" />
-        </div>
-    </div>
+                    <li><img src="/img/logout-04.png" />
+                        <form action="/logout?_method=DELETE" method="post"><a
+                                onclick="this.closest('form').submit();return false;">Keluar</a>
+                        </form>
+                    </li>
+                </ul>
+            </details>
+        </nav>
+        <% } else { %>
+            <nav>
+                <div class="logo-section">
+                    <a href="/dashboard">
+                        <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+                    </a>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="/dashboard">Semua Tutorial</a></li>
+                    <li><a href="/aboutus">Tentang Kami</a></li>
+                    <a href="/login"><button class="outline">Masuk</button></a>
+                    <a href="/daftar"><button>Daftar</button></a>
+                </ul>
+            </nav>
+            <% } %>
+                <div class="tentang-container">
+                    <!-- Deskripsi Section -->
+                    <div class="description-section">
+                        <div class="text-content">
+                            <img src="/img/logotransparan.png" alt="Logo Maya Learn" class="logo" />
+                            <h2>Apa Itu MAYA LEARN?</h2>
+                            <p>
+                                MAYA LEARN adalah platform pembelajaran online yang lengkap dan inovatif, dirancang
+                                untuk membantu
+                                Anda mencapai potensi penuh. Dengan ribuan kursus berkualitas tinggi yang mencakup
+                                berbagai bidang,
+                                dari pengembangan diri hingga
+                                keterampilan teknis, MAYA LEARN memberikan akses mudah ke pengetahuan yang Anda butuhkan
+                                untuk
+                                tumbuh dan berkembang.
+                            </p>
+                        </div>
+                        <div class="image-content">
+                            <img src="/img/tentang1.png" alt="Illustrasi wanita" class="deskripsi-image" />
+                        </div>
+                    </div>
+
+                    <!-- Misi Section -->
+                    <div class="mission-section">
+                        <p>Kami memiliki misi untuk membangun komunitas terbaik di dunia bagi para kreator untuk
+                            berbagi,
+                            berkembang, dan mendapatkan pekerjaan.</p>
+                        <img src="/img/young-businesswoman-with-co-workers 1.png" alt="Gambar Tim" class="tim-image" />
+                    </div>
+                </div>
 </body>
 
 </html>
