@@ -68,38 +68,59 @@ const diskStorage = multer.diskStorage({
 app.get("/", (req, res) => {
   res.render("login.ejs");
 });
+
 app.get("/login", checkNotAuth, (req, res) => {
   res.render("login.ejs");
 });
+
 app.get("/forgor", checkNotAuth, (req, res) => {
   res.render("forgor.ejs");
 });
+
 app.get("/daftar", checkNotAuth, (req, res) => {
   res.render("daftar.ejs");
 });
+
 app.get("/dashboard", checkAuth, (req, res) => {
-  console.log(req.user);
-  res.render("dashboard.ejs");
+  database.query(
+    "SELECT tutorial.judul, tutorial.tipe, tutorial.image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id",
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      console.log(lessons);
+      res.render("dashboard.ejs", {
+        lessons: lessons,
+      });
+    }
+  );
 });
+
 app.get("/tutorial", (req, res) => {
   res.render("tutorialdesc.ejs");
 });
+
 app.get("/nyoba", (req, res) => {
   res.render("nyoba.ejs");
 });
+
 app.get("/create-course", checkAuth, async (req, res) => {
   res.render("makecourse.ejs");
   console.log(req.user);
 });
+
 app.get("/aboutus", (req, res) => {
   res.render("aboutus.ejs");
 });
+
 app.get("/course-progress", (req, res) => {
   res.render("courseprogress.ejs");
 });
+
 app.get("/mycourse", (req, res) => {
   res.render("mycourse.ejs");
 });
+
 app.get("/profile", checkAuth, (req, res) => {
   res.render("profile.ejs", {
     name: req.user.username,
@@ -107,9 +128,12 @@ app.get("/profile", checkAuth, (req, res) => {
   });
 });
 
+app.get("/tutorialdesc/:");
+
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
 });
+
 app.post(
   "/login",
   checkNotAuth,

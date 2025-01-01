@@ -1,246 +1,99 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
-    <link rel="stylesheet" href="/css/cssreset.css" />
-    <link rel="stylesheet" href="/css/dashboard.css" />
 
-    <title>Maya Learn</title>
-  </head>
-  <body>
-    <nav>
-      <div class="logo-section">
-        <img
-          src="/img/logotransparan.png"
-          id="logo"
-          alt="Logo Maya Learn"
-        />
-      </div>
-      <div class="search-section">
-        <input type="search" name="course-search" placeholder="Cari kursus" />
-      </div>
-      <ul class="menu">
-        <li><a href="#kursus">Semua Kursus</a></li>
-        <li><a href="tentangkami.html">Tentang Kami</a></li>
-        <li><a href="">Kontak</a></li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="/css/cssreset.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+
+  <title>Maya Learn</title>
+</head>
+
+<body>
+  <nav>
+    <div class="logo-section">
+      <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+    </div>
+
+    <ul class="menu">
+      <li><a href="">Semua Kursus</a></li>
+      <li><a href="">Tentang Kami</a></li>
+    </ul>
+    <details class="dropdown">
+      <summary>
+        <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+      </summary>
+      <ul>
+        <li><img src="/img/user-profile-square.png" /><a href="#">Profile Saya</a></li>
+        <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
       </ul>
-      <details class="dropdown">
-        <summary>
-          <img
-            src="/img/user-profile-square.png"
-            alt="User Profile"
-            class="profile-image"
-          />
-        </summary>
-        <ul>
-          <li>
-            <img src="/img/user-profile-square.png" /><a href="#"
-              >Profile Saya</a
-            >
-          </li>
-          <li>
-            <img src="/img/cart.png" /><a href="#">Daftar Tutorial</a>
-          </li>
-          <li>
-            <img src="/img/settings.png" /><a href="#">Pengaturan</a>
-          </li>
-          <li><img src="/img/logout-04.png" /><a href="#">Keluar</a></li>
-        </ul>
-      </details>
-    </nav>
+    </details>
+  </nav>
 
-    <article class="article-card">
-      <div class="content">
-        <h1>Mulai Perjalanan Belajar Anda di Sini</h1>
-        <p>
-          Kuasai keterampilan baru bersama instruktur ahli, kapan saja dan di
-          mana saja. Pilih dari berbagai kategori kursus yang dirancang untuk
-          mendukung kesuksesan Anda.
-        </p>
-        <button>Jelajahi Kursus</button>
-      </div>
-      <div class="image">
-        <img src="/img/dashboard1.png" alt="Ilustrasi Belajar" />
-      </div>
-    </article>
-
-    <article class="card-logo">
-      <div class="image-logo">
-        <img src="/img/logotransparan.png" alt="" />
-      </div>
-    </article>
-
-    <div class="carousel-container" id="kursus">
-      <button class="carousel-button" id="next-button" disabled>&lt;</button>
-      <div class="category-buttons">
-        <button class="outline">Data Science</button>
-        <button class="outline">Bisnis</button>
-        <button class="outline">Marketing</button>
-        <button class="outline">Data Science</button>
-        <button class="outline">Musik</button>
-      </div>
-      <button class="carousel-button" id="next-button">&gt;</button>
+  <article class="article-card">
+    <div class="content">
+      <h1>Mulai Perjalanan Belajar Anda di Sini</h1>
+      <p>
+        Kuasai keterampilan baru bersama instruktur ahli, kapan saja dan di
+        mana saja. Pilih dari berbagai kategori kursus yang dirancang untuk
+        mendukung kesuksesan Anda.
+      </p>
+      <button>Jelajahi Kursus</button>
     </div>
-
-    <div class="carousel">
-      <div class="card">
-        <img
-          src="/img-card/icon Flutter background.jpg"
-          alt="Laravel Class"
-        />
-        <div class="card-content">
-          <h3>Laravel mastering class</h3>
-          <p>27 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img
-          src="/img-card/icon Flutter background.jpg"
-          alt="Flutter Class"
-        />
-        <div class="card-content">
-          <h3>Flutter mastering class</h3>
-          <p>34 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img
-          src="/img-card/icon python background.jpg"
-          alt="Python Class"
-        />
-        <div class="card-content">
-          <h3>Python mastering class</h3>
-          <p>23 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon python background.jpg"
-          alt="Python Class"
-        />
-        <div class="card-content">
-          <h3>Python mastering class</h3>
-          <p>23 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>23 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - Supriad</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - Supriad</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img
-          src="/img-card/icon Kotlin mastering class.jpg"
-          alt="Kotlin Class"
-        />
-        <div class="card-content">
-          <h3>Kotlin mastering class</h3>
-          <p>40 Module - 10 AM</p>
-          <p>Development</p>
-          <p class="by">By Subandi</p>
-        </div>
-      </div>
+    <div class="image">
+      <img src="/img/dashboard1.png" alt="Ilustrasi Belajar" />
     </div>
-    <div class="semua-kursus">
-      <button>Semua kursus</button>
-    </div>
+  </article>
 
-    <script src="/scripts/js.js"></script>
-  </body>
+  <article class="card-logo">
+    <div class="image-logo">
+      <img src="/img/logotransparan.png" alt="" />
+    </div>
+  </article>
+
+  <div class="carousel-container" id="kursus">
+    <button class="carousel-button" id="next-button" disabled>&lt;</button>
+    <div class="category-buttons">
+      <button class="outline">Data Science</button>
+      <button class="outline">Bisnis</button>
+      <button class="outline">Marketing</button>
+      <button class="outline">Data Science</button>
+      <button class="outline">Musik</button>
+    </div>
+    <button class="carousel-button" id="next-button">&gt;</button>
+  </div>
+
+  <div class="carousel">
+    <% lessons.forEach(lesson=> { %>
+
+      <div class="card">
+        <img src="img/upload/<%=lesson.image %>" />
+        <div class=" card-content">
+          <h3>
+            <%=lesson.judul%>
+          </h3>
+          <p>
+            <%=lesson.durasi%>
+          </p>
+          <p>
+            <%=lesson.tipe%>
+          </p>
+          <p class="by">
+            <%=lesson.username%>
+          </p>
+        </div>
+      </div>
+
+      <% }) %>
+
+  </div>
+  <div class="semua-kursus">
+    <a href="/create-course">Buat kursus<a />
+  </div>
+
+  <script src="/scripts/js.js"></script>
+</body>
+
 </html>
