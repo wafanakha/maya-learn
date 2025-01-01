@@ -18,8 +18,8 @@
     </div>
 
     <ul class="menu">
-      <li><a href="">Semua Kursus</a></li>
-      <li><a href="">Tentang Kami</a></li>
+      <li><a href="/dashboard">Semua Kursus</a></li>
+      <li><a href="/aboutus">Tentang Kami</a></li>
     </ul>
     <details class="dropdown">
       <summary>
@@ -67,9 +67,9 @@
 
   <div class="carousel">
     <% lessons.forEach(lesson=> { %>
+      <a href="/coursedesc/<%=lesson.lesson_id%>" class="card">
+        <img src="img/upload/<%=lesson.tumb_image %>" />
 
-      <div class="card">
-        <img src="img/upload/<%=lesson.image %>" />
         <div class=" card-content">
           <h3>
             <%=lesson.judul%>
@@ -84,8 +84,7 @@
             <%=lesson.username%>
           </p>
         </div>
-      </div>
-
+      </a>
       <% }) %>
 
   </div>

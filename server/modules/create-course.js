@@ -7,7 +7,7 @@ module.exports = (req, res) => {
   console.log(tumbnailImg[0].filename);
   console.log(stepImg);
   database.query(
-    "INSERT INTO tutorial(judul, tipe, durasi, isi_course, image, user_id) VALUES (?,?,?,?,?,?)",
+    "INSERT INTO tutorial(judul, tipe, durasi, isi_course, tumb_image, user_id) VALUES (?,?,?,?,?,?)",
     [judul, type, durasi, ringkasan, tumbnailImg[0].filename, req.user.user_id],
     (err) => {
       if (err) {

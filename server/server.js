@@ -51,6 +51,7 @@ app.use(passport.authenticate("session"));
 app.use(methodOverride("_method"));
 
 const initializePassport = require("./modules/passport-config.js");
+const { error } = require("console");
 initializePassport(passport);
 
 const diskStorage = multer.diskStorage({
@@ -66,7 +67,7 @@ const diskStorage = multer.diskStorage({
 });
 
 app.get("/", (req, res) => {
-  res.render("login.ejs");
+  res.redirect("/dashboard");
 });
 
 app.get("/login", checkNotAuth, (req, res) => {
@@ -81,9 +82,9 @@ app.get("/daftar", checkNotAuth, (req, res) => {
   res.render("daftar.ejs");
 });
 
-app.get("/dashboard", checkAuth, (req, res) => {
+app.get("/dashboard", (req, res) => {
   database.query(
-    "SELECT tutorial.judul, tutorial.tipe, tutorial.image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id",
+    "SELECT tutorial.lesson_id, tutorial.judul, tutorial.tipe, tumb_image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id",
     (err, lessons) => {
       if (err) {
         console.log(err.stack);
@@ -94,10 +95,6 @@ app.get("/dashboard", checkAuth, (req, res) => {
       });
     }
   );
-});
-
-app.get("/tutorial", (req, res) => {
-  res.render("tutorialdesc.ejs");
 });
 
 app.get("/nyoba", (req, res) => {
@@ -118,7 +115,19 @@ app.get("/course-progress", (req, res) => {
 });
 
 app.get("/mycourse", (req, res) => {
-  res.render("mycourse.ejs");
+  database.query(
+    "SELECT * FROM tutorial WHERE user_id=?",
+    [req.user.user_id],
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      res.render("mycourse.ejs", {
+        lessons: lessons,
+        username: req.user.username,
+      });
+    }
+  );
 });
 
 app.get("/profile", checkAuth, (req, res) => {
@@ -128,7 +137,41 @@ app.get("/profile", checkAuth, (req, res) => {
   });
 });
 
-app.get("/tutorialdesc/:");
+app.get("/coursedesc/:lesson_id", (req, res) => {
+  const { lesson_id } = req.params;
+  database.query(
+    "SELECT judul, durasi, isi_course, tumb_image, tipe, step.image, judul_step, username FROM tutorial JOIN step ON tutorial.lesson_id=step.lesson_id JOIN user ON tutorial.user_id=user.user_id WHERE tutorial.lesson_id=?",
+    [lesson_id],
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      console.log("tumbnail: " + lessons[0].tumb_image);
+      res.render("tutorialdesc.ejs", {
+        lesson_id: lesson_id,
+        lessons: lessons,
+      });
+    }
+  );
+});
+
+app.get("/course/:lesson_id", (req, res) => {
+  const { lesson_id } = req.params;
+  database.query(
+    "SELECT judul, durasi, isi_course, tumb_image, tipe, step.image, judul_step, username, isi_table FROM tutorial JOIN step ON tutorial.lesson_id=step.lesson_id JOIN user ON tutorial.user_id=user.user_id WHERE tutorial.lesson_id=?",
+    [lesson_id],
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      console.log(lessons[0]);
+      res.render("tutorial.ejs", {
+        lesson_id: lesson_id,
+        lessons: lessons,
+      });
+    }
+  );
+});
 
 app.post("/daftar", checkNotAuth, (req, res) => {
   daftar(req, res);
