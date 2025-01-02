@@ -4,7 +4,7 @@
   "description": "tubes impal semester 5",
   "main": "./server/server.js",
   "scripts": {
-    "devStart": "nodemon ./server/server.js"
+    "build": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",
