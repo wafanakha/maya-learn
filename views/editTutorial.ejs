@@ -56,12 +56,11 @@
             <div class="container-tutorial">
                 <div class="header">
                     <h1>Tutorial Milikmu</h1>
-                    <a href="#">Kembali</a>
                 </div>
                 <div class="grid">
                     <!-- Example cards -->
                     <% lessons.forEach(lesson=> { %>
-                        <a class="card">
+                        <a class="card" href="/coursedesc/<%= lesson.lesson_id %>">
                             <img src="img/upload/<%=lesson.tumb_image %>" />
                             <div class=" card-content">
                                 <h2 class="card-title">

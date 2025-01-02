@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
               res.redirect("/daftar");
               return;
             }
+            req.flash("success", "login");
             res.redirect("/login");
           }
         );

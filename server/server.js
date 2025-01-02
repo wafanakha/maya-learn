@@ -4,8 +4,8 @@ if (process.env.NODE_ENV !== "production") {
 const database = require("../database/mysql.js");
 const daftar = require("./modules/daftar.js");
 const forgor = require("./modules/forgor.js");
-const tokenAuth = require("./modules/tokenreset.js");
-const reset = require("./modules/reset.js");
+const tokenAuth = require("./modules/reset.js");
+const reset = require("./modules/resetPass.js");
 const createCourse = require("./modules/create-course.js");
 const deleteCourse = require("./modules/delete-course.js");
 
@@ -44,12 +44,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 app.use(methodOverride("_method"));
 
 const initializePassport = require("./modules/passport-config.js");
-const { error } = require("console");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 initializePassport(passport);
 
 const diskStorage = multer.diskStorage({
@@ -69,7 +69,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", checkNotAuth, (req, res) => {
-  res.render("login.ejs");
+  console.log(req.flash("success"));
+  res.render("login.ejs", {
+    messages: req.flash("success"),
+  });
 });
 
 app.get("/forgor", checkNotAuth, (req, res) => {
