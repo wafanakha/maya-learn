@@ -7,6 +7,7 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/cssreset.css">
     <link rel="stylesheet" href="/css/setting.css" />
     <link rel="stylesheet" href="/css/profilemykursus.css" />
     <title>Setting</title>
@@ -19,7 +20,7 @@
         </div>
 
         <ul class="menu">
-            <li><a href="/dashboard">Semua Tutorial</a></li>
+            <li><a href="/allcourses">Semua Tutorial</a></li>
             <li><a href="/aboutus">Tentang Kami</a></li>
         </ul>
         <details class="dropdown">
@@ -60,7 +61,7 @@
                 <div class="grid">
                     <!-- Example cards -->
                     <% lessons.forEach(lesson=> { %>
-                        <div class="card">
+                        <a class="card">
                             <img src="img/upload/<%=lesson.tumb_image %>" />
                             <div class=" card-content">
                                 <h2 class="card-title">
@@ -75,8 +76,13 @@
                                 <p class="card-author">
                                     <%=username%>
                                 </p>
+                                <form action="/editTutorial" method="post">
+                                    <input type="text" name="lesson_id" style="display: none;"
+                                        value="<%= lesson.lesson_id %>">
+                                    <button>Hapus</button>
+                                </form>
                             </div>
-                        </div>
+                        </a>
 
                         <% }) %>
                             <!-- Add Card -->

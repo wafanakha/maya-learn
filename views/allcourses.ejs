@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Tutorial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/cssreset.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body>
+    <% if(isauth) {%>
+        <nav>
+
+            <div class="logo-section">
+                <a href="/dashboard"><img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" /></a>
+            </div>
+
+            <ul class="menu">
+                <li><a href="/allcourses">Semua Tutorial</a></li>
+                <li><a href="/aboutus">Tentang Kami</a></li>
+            </ul>
+            <details class="dropdown">
+                <summary>
+                    <img src="/img/user-profile-square.png" alt="User Profile" class="profile-image" />
+                </summary>
+                <ul>
+                    <li><img src="/img/user-profile-square.png" /><a href="/profile">Profile Saya</a></li>
+
+                    <li><img src="/img/logout-04.png" />
+                        <form action="/logout?_method=DELETE" method="post"><a
+                                onclick="this.closest('form').submit();return false;">Keluar</a>
+                        </form>
+                    </li>
+                </ul>
+            </details>
+        </nav>
+        <% } else { %>
+            <nav>
+                <div class="logo-section">
+                    <a href="/dashboard">
+                        <img src="/img/logotransparan.png" id="logo" alt="Logo Maya Learn" />
+                    </a>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="/allcourses" class="active">Semua Tutorial</a></li>
+                    <li><a href="/aboutus">Tentang Kami</a></li>
+                    <a href="/login"><button class="outline">Masuk</button></a>
+                    <a href="/daftar"><button>Daftar</button></a>
+                </ul>
+            </nav>
+            <% } %>
+                <div class="carousel">
+                    <% lessons.forEach(lesson=> { %>
+                        <a href="/coursedesc/<%=lesson.lesson_id%>" class="card">
+                            <img src="img/upload/<%=lesson.tumb_image %>" />
+
+                            <div class=" card-content">
+                                <h3>
+                                    <%=lesson.judul%>
+                                </h3>
+                                <p>
+                                    <%=lesson.durasi%>
+                                </p>
+                                <p>
+                                    <%=lesson.tipe%>
+                                </p>
+                                <p class="by">
+                                    <%=lesson.username%>
+                                </p>
+                            </div>
+                        </a>
+                        <% }) %>
+                </div>
+</body>
+
+</html>

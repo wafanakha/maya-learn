@@ -20,7 +20,7 @@
       </div>
 
       <ul class="menu">
-        <li><a href="/dashboard">Semua Tutorial</a></li>
+        <li><a href="/allcourses">Semua Tutorial</a></li>
         <li><a href="/aboutus">Tentang Kami</a></li>
       </ul>
       <details class="dropdown">
@@ -47,7 +47,7 @@
         </div>
 
         <ul class="menu">
-          <li><a href="/dashboard">Semua Tutorial</a></li>
+          <li><a href="/allcourses">Semua Tutorial</a></li>
           <li><a href="/aboutus">Tentang Kami</a></li>
           <a href="/login"><button class="outline">Masuk</button></a>
           <a href="/daftar"><button>Daftar</button></a>
@@ -77,17 +77,7 @@
           </div>
         </article>
 
-        <div class="carousel-container" id="kursus">
-          <button class="carousel-button" id="next-button" disabled>&lt;</button>
-          <div class="category-buttons">
-            <button class="outline">Data Science</button>
-            <button class="outline">Bisnis</button>
-            <button class="outline">Marketing</button>
-            <button class="outline">Data Science</button>
-            <button class="outline">Musik</button>
-          </div>
-          <button class="carousel-button" id="next-button">&gt;</button>
-        </div>
+
 
         <div class="carousel">
           <% lessons.forEach(lesson=> { %>
@@ -110,11 +100,9 @@
               </div>
             </a>
             <% }) %>
+              <a class="card add-card" href="/create-course">+</a>
+        </div>
 
-        </div>
-        <div class="semua-kursus">
-          <a href="/create-course">Buat kursus<a />
-        </div>
 
         <script src="/scripts/js.js"></script>
 </body>

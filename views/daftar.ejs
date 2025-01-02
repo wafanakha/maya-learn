@@ -19,7 +19,8 @@
     </div>
 
     <ul class="menu">
-      <li><a href="/dashboard">Semua Tutorial</a></li>
+      <li><a href="/allcourses">Semua Tutorial</a></li>
+
       <li><a href="/aboutus">Tentang Kami</a></li>
       <a href="/login"><button class="outline">Masuk</button></a>
       <a href="/daftar"><button>Daftar</button></a>
@@ -33,18 +34,27 @@
           <h1>Daftar</h1>
           <h2>Nama</h2>
           <input name="username" placeholder="Nama" autocomplete="name" required />
-          <h2>Email</h2>
-          <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
-            aria-describedby="email-helper" required />
-          <h2>Password</h2>
-          <div class="password-wrapper">
-            <input type="password" id="password" name="password" placeholder="Masukkan password" aria-label="Password"
-              autocomplete="new-password" required />
-          </div>
-          <button type="submit">Daftar</button>
-          <div class="link-center">
-            <a href="/daftar">Sudah punya Akun?</a>
-          </div>
+          <% if (messages.length> 0) {%>
+            <h2>Email</h2>
+            <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
+              aria-describedby="email-helper" aria-invalid="true" aria-describedby="invalid-helper" required />
+            <small id="invalid-helper">
+              Email tersebut sudah digunakan!
+            </small>
+            <% } else {%>
+              <h2>Email</h2>
+              <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
+                aria-describedby="email-helper" required />
+              <% } %>
+                <h2>Password</h2>
+                <div class="password-wrapper">
+                  <input type="password" id="password" name="password" placeholder="Masukkan password"
+                    aria-label="Password" autocomplete="new-password" required />
+                </div>
+                <button type="submit">Daftar</button>
+                <div class="link-center">
+                  <a href="/login">Sudah punya Akun?</a>
+                </div>
         </div>
       </div>
     </form>

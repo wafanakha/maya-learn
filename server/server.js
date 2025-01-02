@@ -7,6 +7,7 @@ const forgor = require("./modules/forgor.js");
 const tokenAuth = require("./modules/tokenreset.js");
 const reset = require("./modules/reset.js");
 const createCourse = require("./modules/create-course.js");
+const deleteCourse = require("./modules/delete-course.js");
 
 const express = require("express");
 const app = express();
@@ -76,7 +77,9 @@ app.get("/forgor", checkNotAuth, (req, res) => {
 });
 
 app.get("/daftar", checkNotAuth, (req, res) => {
-  res.render("daftar.ejs");
+  res.render("daftar.ejs", {
+    messages: req.flash("err"),
+  });
 });
 
 app.get("/dashboard", (req, res) => {
@@ -129,6 +132,22 @@ app.get("/profile", checkAuth, (req, res) => {
     name: req.user.username,
     email: req.user.email,
   });
+});
+
+app.get("/allcourses", (req, res) => {
+  database.query(
+    "SELECT tutorial.lesson_id, tutorial.judul, tutorial.tipe, tumb_image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id",
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      console.log(lessons);
+      res.render("allcourses.ejs", {
+        lessons: lessons,
+        isauth: req.isAuthenticated(),
+      });
+    }
+  );
 });
 
 app.get("/coursedesc/:lesson_id", (req, res) => {
@@ -212,6 +231,10 @@ app.post("/profile", (req, res) => {
       res.redirect("/profile");
     }
   );
+});
+
+app.post("/editTutorial", (req, res) => {
+  deleteCourse(req, res);
 });
 
 app.post("/forgor", checkNotAuth, (req, res) => {
