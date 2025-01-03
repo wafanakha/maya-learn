@@ -59,6 +59,8 @@
                         <input type="password" id="password" name="password" placeholder="Masukkan password"
                           aria-label="Password" autocomplete="current-password" required />
                       </div>
+                      <input type="button" onclick="myFunction()" value="show password">
+
                       <% } %>
 
                         <% } else { %>
@@ -69,6 +71,8 @@
                             <input type="password" id="password" name="password" placeholder="Masukkan password"
                               aria-label="Password" autocomplete="current-password" required />
                           </div>
+                          <input type="button" onclick="myFunction()" value="show password">
+
                           <% } %>
 
                             <div class="link-right">
@@ -83,12 +87,14 @@
     </form>
   </div>
   <script src="/scripts/scripts.js"></script>
-  <!-- <script type="text/javascript">
-    var success = ;
-    if (success == "login") {
-      alert("sukses membuat akun");
-    }
-  </script> -->
+  <script>function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }</script>
 </body>
 
 </html>

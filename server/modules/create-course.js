@@ -6,6 +6,7 @@ module.exports = (req, res) => {
   const { tumbnailImg, stepImg } = req.files;
   console.log(tumbnailImg[0].filename);
   console.log(stepImg);
+  console.log();
   database.query(
     "INSERT INTO tutorial(judul, tipe, durasi, isi_course, tumb_image, user_id) VALUES (?,?,?,?,?,?)",
     [judul, type, durasi, ringkasan, tumbnailImg[0].filename, req.user.user_id],
@@ -16,7 +17,8 @@ module.exports = (req, res) => {
       }
     }
   );
-  for (let i = 0; i < stepTitle.length; i++) {
+  for (let i = 0; i < stepImg.length; i++) {
+    console.log(stepImg[i].originalname);
     if (stepImg[i].originalname != "myFile.txt") {
       database.query(
         "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
@@ -26,7 +28,6 @@ module.exports = (req, res) => {
             console.log(err.stack);
             return;
           }
-          console.log("horreeee!");
         }
       );
     } else {
@@ -38,7 +39,6 @@ module.exports = (req, res) => {
             console.log(err.stack);
             return;
           }
-          console.log("horreeee!");
         }
       );
     }

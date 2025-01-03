@@ -2,14 +2,12 @@ const express = require("express");
 const database = require("../../database/mysql.js");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
-const session = require("express-session");
 
 const app = express();
 app.use(flash());
 
 module.exports = async (req, res) => {
   try {
-    console.log("woy");
     const { username, email } = req.body;
     const passwordHashed = await bcrypt.hash(req.body.password, 10);
 
@@ -27,12 +25,10 @@ module.exports = async (req, res) => {
               res.redirect("/daftar");
               return;
             }
-            req.flash("success", "login");
             res.redirect("/login");
           }
         );
       } else {
-        console.log("haiya");
         req.flash("err", "email");
         res.redirect("/daftar");
       }

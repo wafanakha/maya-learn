@@ -51,6 +51,7 @@
                   <input type="password" id="password" name="password" placeholder="Masukkan password"
                     aria-label="Password" autocomplete="new-password" required />
                 </div>
+                <input type="button" onclick="myFunction()" value="show password">
                 <button type="submit">Daftar</button>
                 <div class="link-center">
                   <a href="/login">Sudah punya Akun?</a>
@@ -60,6 +61,16 @@
     </form>
   </section>
   <script src="/scripts/scripts.js"></script>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subjudulContainer = document.getElementById("subjudul-container");
   const addBtn = document.getElementById("add-btn");
   const removeBtn = document.getElementById("remove-btn");
-  let counter = 0;
+
   // Fungsi untuk membuat elemen subjudul baru
   const createSubjudul = () => {
     // Container utama untuk subjudul
@@ -112,11 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return subjudulCard;
   };
 
+  subjudulContainer.appendChild(createSubjudul());
+  subjudulContainer.appendChild(createSubjudul());
+
   // Tambahkan subjudul baru saat tombol tambah diklik
   addBtn.addEventListener("click", () => {
     const newSubjudul = createSubjudul();
     subjudulContainer.appendChild(newSubjudul);
-    counter++; // Tambahkan ke container utama
   });
 
   // Hapus subjudul terakhir saat tombol hapus diklik

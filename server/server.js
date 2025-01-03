@@ -17,6 +17,7 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
+
 database.query(
   "SELECT * FROM user WHERE email = ?",
   ["wafanakha17@gmail.com"],
@@ -69,10 +70,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", checkNotAuth, (req, res) => {
-  console.log(req.flash("success"));
-  res.render("login.ejs", {
-    messages: req.flash("success"),
-  });
+  res.render("login.ejs", {});
 });
 
 app.get("/forgor", checkNotAuth, (req, res) => {
@@ -92,7 +90,6 @@ app.get("/dashboard", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      console.log(lessons);
       res.render("dashboard.ejs", {
         lessons: lessons,
         isauth: req.isAuthenticated(),
