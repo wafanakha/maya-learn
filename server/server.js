@@ -17,6 +17,7 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
+var connFlash = require("connect-flash");
 
 database.query(
   "SELECT * FROM user WHERE email = ?",
@@ -70,7 +71,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", checkNotAuth, (req, res) => {
-  res.render("login.ejs", { success: false });
+  res.render("login.ejs", {
+    dialog: req.flash("success"),
+    login: req.flash("login"),
+  });
 });
 
 app.get("/forgor", checkNotAuth, (req, res) => {
@@ -98,20 +102,15 @@ app.get("/dashboard", (req, res) => {
   );
 });
 
-app.get("/nyoba", (req, res) => {
-  res.render("nyoba.ejs");
-});
-
 app.get("/create-course", checkAuth, async (req, res) => {
   res.render("makecourse.ejs");
-  console.log(req.user);
 });
 
 app.get("/aboutus", (req, res) => {
   res.render("aboutus.ejs", { isauth: req.isAuthenticated() });
 });
 
-app.get("/editTutorial", (req, res) => {
+app.get("/editTutorial", checkAuth, (req, res) => {
   database.query(
     "SELECT * FROM tutorial WHERE user_id=?",
     [req.user.user_id],
@@ -218,7 +217,7 @@ app.post(
   }
 );
 
-app.post("/profile", (req, res) => {
+app.post("/profile", checkAuth, (req, res) => {
   const { name, email } = req.body;
   database.query(
     "UPDATE user SET username = ?, email = ?",
@@ -233,7 +232,7 @@ app.post("/profile", (req, res) => {
   );
 });
 
-app.post("/editTutorial", (req, res) => {
+app.post("/editTutorial", checkAuth, (req, res) => {
   deleteCourse(req, res);
 });
 
@@ -264,6 +263,7 @@ function checkAuth(req, res, next) {
     console.log("autheeedd");
     return next();
   }
+  req.flash("login", "need");
   res.redirect("/login");
 }
 

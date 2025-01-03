@@ -11,23 +11,18 @@
 </head>
 
 <body>
-  <dialog <%if(success) { %> open <% } %>>
+  <dialog <%if(dialog.length || login.length> 0) { %> open <% } %>>
       <article>
-        <h2>Confirm Your Membership</h2>
-        <p>
-          Thank you for signing up for a membership!
-          Please review the membership details below:
-        </p>
-        <ul>
-          <li>Membership: Individual</li>
-          <li>Price: $10</li>
-        </ul>
-        <footer>
-          <button class="secondary">
-            Cancel
-          </button>
-          <button>Confirm</button>
-        </footer>
+        <% if(dialog.length> 0) { %>
+          <h2>Akun Berhasil Dibuat!</h2>
+          <% } %>
+            <% if(login.length> 0) { %>
+              <h2>login</h2>
+              <p>anda perlu login untuk menggunakan fitur tersebut!</p>
+              <% } %>
+                <footer>
+                  <button autofocus onclick="toggleModal(event)">OK</button>
+                </footer>
       </article>
   </dialog>
   <nav>
@@ -107,14 +102,52 @@
     </form>
   </div>
   <script src="/scripts/scripts.js"></script>
-  <script>function myFunction() {
+  <script>
+    function myFunction() {
       var x = document.getElementById("password");
       if (x.type === "password") {
         x.type = "text";
       } else {
         x.type = "password";
       }
-    }</script>
+    }
+    const isOpenClass = "modal-is-open";
+    const openingClass = "modal-is-opening";
+    const closingClass = "modal-is-closing";
+    const scrollbarWidthCssVar = "--pico-scrollbar-width";
+    const animationDuration = 400; // ms
+    let visibleModal = null;
+
+    const openModal = (modal) => {
+      const { documentElement: html } = document;
+      const scrollbarWidth = getScrollbarWidth();
+      if (scrollbarWidth) {
+        html.style.setProperty(scrollbarWidthCssVar, `${scrollbarWidth}px`);
+      }
+      html.classList.add(isOpenClass, openingClass);
+      setTimeout(() => {
+        visibleModal = modal;
+        html.classList.remove(openingClass);
+      }, animationDuration);
+      modal.showModal();
+    };
+    const closeModal = (modal) => {
+      visibleModal = null;
+      const { documentElement: html } = document;
+      html.classList.add(closingClass);
+      setTimeout(() => {
+        html.classList.remove(closingClass, isOpenClass);
+        html.style.removeProperty(scrollbarWidthCssVar);
+        modal.close();
+      }, animationDuration);
+    };
+    const toggleModal = (event) => {
+      event.preventDefault();
+      const modal = document.querySelector('dialog');
+      if (!modal) return;
+      modal && (modal.open ? closeModal(modal) : openModal(modal));
+    };
+  </script>
 </body>
 
 </html>
