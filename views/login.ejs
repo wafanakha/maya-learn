@@ -11,6 +11,25 @@
 </head>
 
 <body>
+  <dialog <%if(success) { %> open <% } %>>
+      <article>
+        <h2>Confirm Your Membership</h2>
+        <p>
+          Thank you for signing up for a membership!
+          Please review the membership details below:
+        </p>
+        <ul>
+          <li>Membership: Individual</li>
+          <li>Price: $10</li>
+        </ul>
+        <footer>
+          <button class="secondary">
+            Cancel
+          </button>
+          <button>Confirm</button>
+        </footer>
+      </article>
+  </dialog>
   <nav>
     <div class="logo-section">
       <a href="/dashboard">
@@ -58,8 +77,8 @@
                       <div class="password-wrapper">
                         <input type="password" id="password" name="password" placeholder="Masukkan password"
                           aria-label="Password" autocomplete="current-password" required />
+                        <img src="/img/eye-close.png" onclick="myFunction()" id="eye-icon" />
                       </div>
-                      <input type="button" onclick="myFunction()" value="show password">
 
                       <% } %>
 
@@ -70,8 +89,9 @@
                           <div class="password-wrapper">
                             <input type="password" id="password" name="password" placeholder="Masukkan password"
                               aria-label="Password" autocomplete="current-password" required />
+                            <img src="/img/eye-close.png" onclick="myFunction()" id="eye-icon" />
                           </div>
-                          <input type="button" onclick="myFunction()" value="show password">
+
 
                           <% } %>
 
