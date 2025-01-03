@@ -103,7 +103,9 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/create-course", checkAuth, async (req, res) => {
-  res.render("makecourse.ejs");
+  res.render("makecourse.ejs", {
+    err: req.flash("image"),
+  });
 });
 
 app.get("/aboutus", (req, res) => {
@@ -140,7 +142,6 @@ app.get("/allcourses", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      console.log(lessons);
       res.render("allcourses.ejs", {
         lessons: lessons,
         isauth: req.isAuthenticated(),
@@ -202,15 +203,32 @@ app.post(
   })
 );
 
-const ccupload = multer({ storage: diskStorage });
+const ccupload = multer({
+  storage: diskStorage,
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      req.notImage = "no image";
+      return cb(null, false, new Error("Please upload a valid image file"));
+    }
+    cb(null, true);
+  },
+});
 
 app.post(
   "/create-course",
   checkAuth,
-  ccupload.fields([
-    { name: "tumbnailImg", maxCount: 1 },
-    { name: "stepImg", maxCount: 30 },
-  ]),
+  ccupload.fields(
+    [
+      { name: "tumbnailImg", maxCount: 1 },
+      { name: "stepImg", maxCount: 30 },
+    ],
+    (req, res, err) => {
+      if (err) {
+        req.flash("image", "");
+        res.redirect("/create-course");
+      }
+    }
+  ),
   (req, res) => {
     console.log(req.files);
     createCourse(req, res);
@@ -275,4 +293,4 @@ function checkNotAuth(req, res, next) {
   next();
 }
 
-app.listen(5000);
+app.listen(3000);

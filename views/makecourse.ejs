@@ -14,6 +14,14 @@
 </head>
 
 <body>
+    <dialog <%if(err.length> 0) { %> open <% } %>>
+            <article>
+                <h2>file yang diupload harus image!</h2>
+                <footer>
+                    <button autofocus onclick="toggleModal(event)">OK</button>
+                </footer>
+            </article>
+    </dialog>
     <nav>
 
         <div class="logo-section">
@@ -63,8 +71,8 @@
                         <img src="https://img.icons8.com/material-outlined/24/000000/add-image.png"
                             alt="Tambahkan Gambar">
                     </button>
-                    <input type="file" class="thumbnail-input upload-input" name="tumbnailImg" style="display: none;"
-                        required />
+                    <input type="file" accept="image/*" class="thumbnail-input upload-input" name="tumbnailImg"
+                        style="display: none;" required />
                 </div>
                 <!-- Tombol untuk upload gambar -->
             </header>
@@ -98,6 +106,44 @@
             <script src="/scripts/upload.js"></script>
         </div>
     </form>
+    <script>
+        const isOpenClass = "modal-is-open";
+        const openingClass = "modal-is-opening";
+        const closingClass = "modal-is-closing";
+        const scrollbarWidthCssVar = "--pico-scrollbar-width";
+        const animationDuration = 400; // ms
+        let visibleModal = null;
+
+        const openModal = (modal) => {
+            const { documentElement: html } = document;
+            const scrollbarWidth = getScrollbarWidth();
+            if (scrollbarWidth) {
+                html.style.setProperty(scrollbarWidthCssVar, `${scrollbarWidth}px`);
+            }
+            html.classList.add(isOpenClass, openingClass);
+            setTimeout(() => {
+                visibleModal = modal;
+                html.classList.remove(openingClass);
+            }, animationDuration);
+            modal.showModal();
+        };
+        const closeModal = (modal) => {
+            visibleModal = null;
+            const { documentElement: html } = document;
+            html.classList.add(closingClass);
+            setTimeout(() => {
+                html.classList.remove(closingClass, isOpenClass);
+                html.style.removeProperty(scrollbarWidthCssVar);
+                modal.close();
+            }, animationDuration);
+        };
+        const toggleModal = (event) => {
+            event.preventDefault();
+            const modal = document.querySelector('dialog');
+            if (!modal) return;
+            modal && (modal.open ? closeModal(modal) : openModal(modal));
+        };
+    </script>
 </body>
 
 </html>

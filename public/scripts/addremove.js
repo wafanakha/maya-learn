@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     subjudulInput.setAttribute("type", "text");
     subjudulInput.setAttribute("name", "stepTitle");
     subjudulInput.setAttribute("placeholder", "Subjudul");
+    subjudulInput.required = true;
 
     // Wrapper deskripsi
     const deskripsiWrapper = document.createElement("div");
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     deskripsiArea.className = "deskripsi-area";
     deskripsiArea.setAttribute("placeholder", "Deskripsi");
     deskripsiArea.setAttribute("name", "stepText");
+    deskripsiArea.required = true;
 
     // Tombol tambah gambar
     const addImageBtn = document.createElement("button");
@@ -57,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fileInput.setAttribute("value", " ");
     fileInput.style.display = "none"; // Sembunyikan input file
 
-    const myFile = new File(["Hello World!"], "myFile.txt", {
-      type: "text/plain",
+    const myFile = new File([""], "empty.jpeg", {
+      type: "image/jpeg",
       lastModified: new Date(),
     });
 

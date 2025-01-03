@@ -4,9 +4,14 @@ module.exports = (req, res) => {
   const { judul, type, durasi, ringkasan, stepTitle, stepText } = req.body;
 
   const { tumbnailImg, stepImg } = req.files;
-  console.log(tumbnailImg[0].filename);
-  console.log(stepImg);
-  console.log();
+  console.log(req.files);
+
+  if (req.notImage) {
+    console.log(req.notImage);
+    req.flash("image", "not image");
+    res.redirect("/create-course");
+    return;
+  }
   database.query(
     "INSERT INTO tutorial(judul, tipe, durasi, isi_course, tumb_image, user_id) VALUES (?,?,?,?,?,?)",
     [judul, type, durasi, ringkasan, tumbnailImg[0].filename, req.user.user_id],
@@ -18,8 +23,8 @@ module.exports = (req, res) => {
     }
   );
   for (let i = 0; i < stepImg.length; i++) {
-    console.log(stepImg[i].originalname);
-    if (stepImg[i].originalname != "myFile.txt") {
+    console.log(stepImg[i]);
+    if (stepImg[i].originalname != "empty.jpeg") {
       database.query(
         "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
         [stepTitle[i], stepText[i], stepImg[i].filename, judul],
@@ -43,5 +48,5 @@ module.exports = (req, res) => {
       );
     }
   }
-  res.redirect("/dashboard");
+  res.redirect("/editTutorial");
 };
