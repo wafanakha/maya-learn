@@ -1,10 +1,10 @@
 const database = require("../../database/mysql.js");
-
+const crypto = require("crypto");
 module.exports = (req, res) => {
   const { judul, type, durasi, ringkasan, stepTitle, stepText } = req.body;
-
   const { tumbnailImg, stepImg } = req.files;
-  console.log(req.files);
+
+  const id = crypto.randomBytes(16).toString("hex");
 
   if (req.notImage) {
     console.log(req.notImage);
@@ -13,8 +13,16 @@ module.exports = (req, res) => {
     return;
   }
   database.query(
-    "INSERT INTO tutorial(judul, tipe, durasi, isi_course, tumb_image, user_id) VALUES (?,?,?,?,?,?)",
-    [judul, type, durasi, ringkasan, tumbnailImg[0].filename, req.user.user_id],
+    "INSERT INTO tutorial(lesson_id, judul, tipe, durasi, isi_course, tumb_image, user_id) VALUES (?,?,?,?,?,?,?)",
+    [
+      id,
+      judul,
+      type,
+      durasi,
+      ringkasan,
+      tumbnailImg[0].filename,
+      req.user.user_id,
+    ],
     (err) => {
       if (err) {
         console.log(err.stack);
@@ -26,8 +34,8 @@ module.exports = (req, res) => {
     console.log(stepImg[i]);
     if (stepImg[i].originalname != "empty.jpeg") {
       database.query(
-        "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
-        [stepTitle[i], stepText[i], stepImg[i].filename, judul],
+        "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = ?",
+        [stepTitle[i], stepText[i], stepImg[i].filename, id],
         (err) => {
           if (err) {
             console.log(err.stack);
@@ -37,8 +45,8 @@ module.exports = (req, res) => {
       );
     } else {
       database.query(
-        "INSERT INTO step SET judul_step = ?, isi_table = ?, lesson_id = (SELECT lesson_id FROM tutorial WHERE judul = ?)",
-        [stepTitle[i], stepText[i], judul],
+        "INSERT INTO step SET judul_step = ?, isi_table = ?, lesson_id = ?",
+        [stepTitle[i], stepText[i], id],
         (err) => {
           if (err) {
             console.log(err.stack);
