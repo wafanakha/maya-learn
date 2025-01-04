@@ -37,7 +37,7 @@ module.exports = (req, res) => {
         from: "wafanakha15@gmail.com",
         to: email,
         subject: "Reset Password",
-        text: `Berikut adalah link untuk mereset password http://localhost:5000/reset/${token}`,
+        text: `Berikut adalah link untuk mereset password http://localhost:3000/reset/${token}`,
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {

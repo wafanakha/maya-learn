@@ -37,7 +37,7 @@
             <input type="text" name="token" value="<%= token %>" style="display: none;">
             <input type="password" id="password" name="password" placeholder="Masukkan password" aria-label="Password"
               autocomplete="new-password" />
-            <img src="/img/eye-close.png" id="eye-icon" />
+            <img src="/img/eye-close.png" onclick="myFunction()" id="eye-icon" />
           </div>
           <button type="submit" value="reset-password">Submit</button>
           <div class="link-center">
@@ -49,6 +49,16 @@
   </div>
   <!-- script js -->
   <script src="/scripts/scripts.js"></script>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
 </body>
 
 </html>
