@@ -15,6 +15,17 @@
 </head>
 
 <body>
+  <dialog <%if(success.length> 0) { %> open <% } %>>
+      <article>
+        <h2>Email Dikirim!</h2>
+        <p>
+          <%= success[0] %>
+        </p>
+        <footer>
+          <button autofocus onclick="toggleModal(event)">OK</button>
+        </footer>
+      </article>
+  </dialog>
   <nav>
     <div class="logo-section">
       <a href="/dashboard">
@@ -38,17 +49,64 @@
         <div class="content">
           <h1>Lupa Password</h1>
           <h2>Email</h2>
-          <input type="email" name="email" placeholder="Masukkan Email" autocomplete="email" aria-label="Email"
-            aria-describedby="email-helper" />
-          <button type="submit" onclick="showAlert()">Kirim</button>
-          <div class="link-center">
-            <a href="/daftar">Belum punya Akun?</a>
-          </div>
+          <% if(email.length> 0 ) {%>
+            <input type="email" name="email" placeholder="name@domail.com" autocomplete="email" aria-label="Email"
+              aria-describedby="email-helper" aria-invalid="true" aria-describedby="invalid-helper" required />
+            <small id="invalid-helper">
+              Tidak ditemukan user dengan Email tersebut!
+            </small>
+            <% } else { %>
+              <input type="email" name="email" placeholder="Masukkan Email" autocomplete="email" aria-label="Email"
+                aria-describedby="email-helper" />
+              <% } %>
+
+                <button type="submit" onclick="showAlert()">Kirim</button>
+                <div class="link-center">
+                  <a href="/daftar">Belum punya Akun?</a>
+                </div>
         </div>
       </div>
     </form>
   </div>
   <script src="/scripts/scripts.js"></script>
+  <script>
+    const isOpenClass = "modal-is-open";
+    const openingClass = "modal-is-opening";
+    const closingClass = "modal-is-closing";
+    const scrollbarWidthCssVar = "--pico-scrollbar-width";
+    const animationDuration = 400; // ms
+    let visibleModal = null;
+
+    const openModal = (modal) => {
+      const { documentElement: html } = document;
+      const scrollbarWidth = getScrollbarWidth();
+      if (scrollbarWidth) {
+        html.style.setProperty(scrollbarWidthCssVar, `${scrollbarWidth}px`);
+      }
+      html.classList.add(isOpenClass, openingClass);
+      setTimeout(() => {
+        visibleModal = modal;
+        html.classList.remove(openingClass);
+      }, animationDuration);
+      modal.showModal();
+    };
+    const closeModal = (modal) => {
+      visibleModal = null;
+      const { documentElement: html } = document;
+      html.classList.add(closingClass);
+      setTimeout(() => {
+        html.classList.remove(closingClass, isOpenClass);
+        html.style.removeProperty(scrollbarWidthCssVar);
+        modal.close();
+      }, animationDuration);
+    };
+    const toggleModal = (event) => {
+      event.preventDefault();
+      const modal = document.querySelector('dialog');
+      if (!modal) return;
+      modal && (modal.open ? closeModal(modal) : openModal(modal));
+    };
+  </script>
 </body>
 
 </html>

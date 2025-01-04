@@ -17,7 +17,8 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
-var connFlash = require("connect-flash");
+const fs = require("fs");
+const filepath = path.join(process.cwd(), "/public/img/upload/");
 
 database.query(
   "SELECT * FROM user WHERE email = ?",
@@ -74,11 +75,15 @@ app.get("/login", checkNotAuth, (req, res) => {
   res.render("login.ejs", {
     dialog: req.flash("success"),
     login: req.flash("login"),
+    password: req.flash("password"),
   });
 });
 
 app.get("/forgor", checkNotAuth, (req, res) => {
-  res.render("forgor.ejs");
+  res.render("forgor.ejs", {
+    success: req.flash("success"),
+    email: req.flash("email"),
+  });
 });
 
 app.get("/daftar", checkNotAuth, (req, res) => {
@@ -123,6 +128,7 @@ app.get("/editTutorial", checkAuth, (req, res) => {
       res.render("editTutorial.ejs", {
         lessons: lessons,
         username: req.user.username,
+        success: req.flash("success"),
       });
     }
   );

@@ -36,6 +36,7 @@ module.exports = async (req, res) => {
               }
             }
           );
+          req.flash("password", "password berhasil diubah!");
           res.redirect("/login");
         } else {
           res.status(404).send("Token Invalid atau Expired");

@@ -1,6 +1,7 @@
 const database = require("../../database/mysql.js");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
+const flash = require("express-flash");
 
 module.exports = (req, res) => {
   const email = req.body.email;
@@ -43,12 +44,16 @@ module.exports = (req, res) => {
           console.log(error);
           res.status(500).send("Tidak bisa mengirim Email");
         } else {
-          console.log(`Email sent: ${info.response}`);
-          res.status(200).send("lihat Email anda");
+          req.flash(
+            "success",
+            "Link reset password sudah dikirim melalui email anda!"
+          );
+          res.redirect("/forgor");
         }
       });
     } else {
-      res.status(404).send("email tidak ditemukan");
+      req.flash("email", "tidak ditemukan user!");
+      res.redirect("/forgor");
     }
   });
 };

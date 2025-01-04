@@ -11,18 +11,25 @@
 </head>
 
 <body>
-  <dialog <%if(dialog.length || login.length> 0) { %> open <% } %>>
+  <dialog <%if(dialog.length || login.length || password.length> 0) { %> open <% } %>>
       <article>
-        <% if(dialog.length> 0) { %>
-          <h2>Akun Berhasil Dibuat!</h2>
+        <% if(dialog.length> 0 ) { %>
+          <h2>
+            <%= dialog[0] %>
+          </h2>
           <% } %>
-            <% if(login.length> 0) { %>
-              <h2>login</h2>
-              <p>anda perlu login untuk menggunakan fitur tersebut!</p>
+            <% if(password.length> 0 ) { %>
+              <h2>
+                <%= password[0] %>
+              </h2>
               <% } %>
-                <footer>
-                  <button autofocus onclick="toggleModal(event)">OK</button>
-                </footer>
+                <% if(login.length> 0) { %>
+                  <h2>login</h2>
+                  <p>anda perlu login untuk menggunakan fitur tersebut!</p>
+                  <% } %>
+                    <footer>
+                      <button autofocus onclick="toggleModal(event)">OK</button>
+                    </footer>
       </article>
   </dialog>
   <nav>
