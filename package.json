@@ -15,6 +15,7 @@
     "body-parser": "^1.20.3",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
+    "email-validator": "^2.0.4",
     "express": "^4.21.1",
     "express-fileupload": "^1.5.1",
     "express-flash": "^0.0.2",

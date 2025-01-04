@@ -83,12 +83,14 @@ app.get("/forgor", checkNotAuth, (req, res) => {
   res.render("forgor.ejs", {
     success: req.flash("success"),
     email: req.flash("email"),
+    noSend: req.flash("noSend"),
   });
 });
 
 app.get("/daftar", checkNotAuth, (req, res) => {
   res.render("daftar.ejs", {
-    messages: req.flash("err"),
+    messages: req.flash("emailFound"),
+    email: req.flash("emailnotValid"),
   });
 });
 

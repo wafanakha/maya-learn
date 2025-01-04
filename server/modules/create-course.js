@@ -4,7 +4,6 @@ module.exports = (req, res) => {
   const { judul, type, durasi, ringkasan, stepTitle, stepText } = req.body;
 
   const { tumbnailImg, stepImg } = req.files;
-  let empty;
   console.log(req.files);
 
   if (req.notImage) {

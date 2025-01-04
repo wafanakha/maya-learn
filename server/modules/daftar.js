@@ -2,6 +2,7 @@ const express = require("express");
 const database = require("../../database/mysql.js");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
+var validator = require("email-validator");
 
 const app = express();
 app.use(flash());
@@ -11,6 +12,12 @@ module.exports = async (req, res) => {
     const { username, email } = req.body;
     const passwordHashed = await bcrypt.hash(req.body.password, 10);
 
+    console.log(validator.validate(email));
+    if (!validator.validate(email)) {
+      req.flash("emailnotValid", "Email yang anda masukkan tidak valid!");
+      res.redirect("/daftar");
+      return;
+    }
     database.query("SELECT * FROM user WHERE email=?", [email], (err, user) => {
       if (err) {
         console.log(err.stack);
@@ -30,7 +37,7 @@ module.exports = async (req, res) => {
           }
         );
       } else {
-        req.flash("err", "email");
+        req.flash("emailFound", "email sudah dipakai!");
         res.redirect("/daftar");
       }
     });

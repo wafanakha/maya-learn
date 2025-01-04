@@ -15,16 +15,26 @@
 </head>
 
 <body>
-  <dialog <%if(success.length> 0) { %> open <% } %>>
-      <article>
-        <h2>Email Dikirim!</h2>
+  <dialog <%if(noSend.length || success.length> 0) { %> open <% } %>>
+      <% if(noSend.length> 0) {%>
+        <h2>
+          <%= noSend[0] %>
+        </h2>
         <p>
-          <%= success[0] %>
+          Email akun anda tidak valid, ganti email akun anda!
         </p>
-        <footer>
-          <button autofocus onclick="toggleModal(event)">OK</button>
-        </footer>
-      </article>
+        <% } %>
+          <% if(success.length> 0) {%>
+            <article>
+              <h2>Email Dikirim!</h2>
+              <p>
+                <%= success[0] %>
+              </p>
+              <% } %>
+                <footer>
+                  <button autofocus onclick="toggleModal(event)">OK</button>
+                </footer>
+            </article>
   </dialog>
   <nav>
     <div class="logo-section">

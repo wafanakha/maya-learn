@@ -34,12 +34,15 @@
           <h1>Daftar</h1>
           <h2>Nama</h2>
           <input name="username" placeholder="Nama" autocomplete="name" required />
-          <% if (messages.length> 0) {%>
+          <% if (messages.length || email.length> 0) {%>
             <h2>Email</h2>
             <input type="email" name="email" placeholder="Name@domail.com" autocomplete="email" aria-label="Email"
               aria-describedby="email-helper" aria-invalid="true" aria-describedby="invalid-helper" required />
             <small id="invalid-helper">
-              Email tersebut sudah digunakan!
+              <% if(messages.length> 0) { %> <%= messages[0] %>
+                  <% } %>
+                    <% if(email.length> 0) { %> <%= email[0] %>
+                        <% } %>
             </small>
             <% } else {%>
               <h2>Email</h2>

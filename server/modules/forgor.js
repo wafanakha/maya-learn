@@ -44,6 +44,7 @@ module.exports = (req, res) => {
           console.log(error);
           res.status(500).send("Tidak bisa mengirim Email");
         } else {
+          console.log(`Email sent: ${info.response}`);
           req.flash(
             "success",
             "Link reset password sudah dikirim melalui email anda!"
