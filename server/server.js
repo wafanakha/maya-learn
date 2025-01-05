@@ -128,6 +128,8 @@ app.get("/profile", checkAuth, (req, res) => {
   res.render("profile.ejs", {
     name: req.user.username,
     email: req.user.email,
+    notValid: req.flash("emailnotValid"),
+    success: req.flash("success"),
   });
 });
 
@@ -267,13 +269,14 @@ app.post("/profile", checkAuth, (req, res) => {
     return;
   }
   database.query(
-    "UPDATE user SET username = ?, email = ?",
-    [name, email],
+    "UPDATE user SET username = ?, email = ? WHERE user_id = ?",
+    [name, email, req.user.user_id],
     (err) => {
       if (err) {
         console.log(err.stack);
         return;
       }
+      req.flash("success", "Update user Profile Berhasil!");
       res.redirect("/profile");
     }
   );
