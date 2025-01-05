@@ -1,36 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const uploadBtns = document.querySelectorAll(".add-image-btn");
-  const thumbnailInputs = document.querySelectorAll(".thumbnail-input");
+const fileInput = document.getElementById("tumb_input");
+const formField = document.getElementById("image-field");
+const imageContainer = document.createElement("div");
+imageContainer.className = "image-container";
 
-  // Menambahkan event listener pada tombol upload
-  uploadBtns.forEach((btn, index) => {
-    btn.addEventListener("click", function () {
-      thumbnailInputs[index].click(); // Membuka input file terkait
-    });
-  });
+fileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Menambahkan gambar sebagai latar belakang deskripsi dengan format square
+      imageContainer.style.backgroundImage = `url(${e.target.result})`;
+      imageContainer.style.backgroundSize = "contain"; // Use 'contain' to ensure the full image fits inside the container
+      imageContainer.style.backgroundPosition = "center"; // Center the image inside the container
+      imageContainer.style.backgroundRepeat = "no-repeat"; // Avoid repeating the image
+      imageContainer.style.width = "200px"; // Set fixed width for small container
+      imageContainer.style.height = "200px"; // Set fixed height to make it square
+      imageContainer.style.margin = "0 auto"; // Center the image container itself horizontally
 
-  // Menangani perubahan saat file dipilih
-  thumbnailInputs.forEach((input, index) => {
-    input.addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        // Membaca file dan menampilkan preview (thumbnail)
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const imgPreview = document.createElement("img");
-          imgPreview.src = e.target.result; // Menetapkan data URL gambar
-          imgPreview.style.maxWidth = "150px"; // Ukuran gambar
-          imgPreview.style.maxHeight = "150px"; // Ukuran gambar
-
-          // Menemukan deskripsi-wrapper yang terkait dengan input ini
-          const deskripsiWrapper = input.closest(".deskripsi-wrapper"); // Mencari elemen terdekat dengan kelas .deskripsi-wrapper
-
-          if (deskripsiWrapper) {
-            deskripsiWrapper.appendChild(imgPreview); // Menambahkan gambar sebagai preview
-          }
-        };
-        reader.readAsDataURL(file); // Membaca file untuk preview
-      }
-    });
-  });
+      // Menyembunyikan tombol "Add Image" setelah gambar diunggah
+    };
+    reader.readAsDataURL(file);
+  }
 });
+
+fileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Menambahkan gambar sebagai latar belakang deskripsi dengan format square
+      imageContainer.style.backgroundImage = `url(${e.target.result})`;
+      imageContainer.style.backgroundSize = "contain"; // Use 'contain' to ensure the full image fits inside the container
+      imageContainer.style.backgroundPosition = "center"; // Center the image inside the container
+      imageContainer.style.backgroundRepeat = "no-repeat"; // Avoid repeating the image
+      imageContainer.style.width = "200px"; // Set fixed width for small container
+      imageContainer.style.height = "200px"; // Set fixed height to make it square
+      imageContainer.style.margin = "0 auto"; // Center the image container itself horizontally
+
+      // Menyembunyikan tombol "Add Image" setelah gambar diunggah
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+formField.appendChild(imageContainer);

@@ -1,7 +1,6 @@
 const database = require("../../database/mysql.js");
 const nodeMailer = require("nodemailer");
 const crypto = require("crypto");
-const flash = require("express-flash");
 
 module.exports = (req, res) => {
   const email = req.body.email;

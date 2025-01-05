@@ -17,8 +17,6 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
-const filepath = path.join(process.cwd(), "/public/img/upload/");
 
 database.query(
   "SELECT * FROM user WHERE email = ?",
@@ -102,7 +100,6 @@ app.get("/dashboard", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      console.log(lessons);
       res.render("dashboard.ejs", {
         lessons: lessons,
         isauth: req.isAuthenticated(),
@@ -156,7 +153,6 @@ app.get("/allcourses", (req, res) => {
         if (err) {
           console.log(err.stack);
         }
-        console.log(genre[1]);
         res.render("allcourses.ejs", {
           lessons: lessons,
           genre: genre,
@@ -180,8 +176,6 @@ app.get("/allcourses/:genre", (req, res) => {
         if (err) {
           console.log(err.stack);
         }
-        console.log(genre[1]);
-        console.log(lessons);
         res.render("allcourses.ejs", {
           lessons: lessons,
           genre: genre,
@@ -201,7 +195,6 @@ app.get("/coursedesc/:lesson_id", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      console.log("tumbnail: " + lessons[0].tumb_image);
       res.render("tutorialdesc.ejs", {
         lesson_id: lesson_id,
         lessons: lessons,
@@ -220,7 +213,6 @@ app.get("/course/:lesson_id", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      console.log(lessons[0]);
       res.render("tutorial.ejs", {
         lesson_id: lesson_id,
         lessons: lessons,
@@ -320,7 +312,6 @@ app.delete("/logout", (req, res) => {
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log("autheeedd");
     return next();
   }
   req.flash("login", "need");
@@ -329,7 +320,6 @@ function checkAuth(req, res, next) {
 
 function checkNotAuth(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log("nooooot autheeedd");
     return res.redirect("/dashboard");
   }
   next();

@@ -5,7 +5,6 @@ const filepath = path.join(process.cwd(), "/public/img/upload/");
 
 module.exports = (req, res) => {
   const { lesson_id } = req.body;
-  console.log(lesson_id);
   database.query(
     "SELECT image FROM step WHERE lesson_id=?",
     [lesson_id],
@@ -16,7 +15,6 @@ module.exports = (req, res) => {
       }
       console.log(steps);
       steps.forEach((step) => {
-        console.log(step.image);
         fs.unlinkSync(filepath + step.image);
       });
     }
@@ -32,7 +30,6 @@ module.exports = (req, res) => {
       }
       console.log(tutorial[0].tumb_image);
       fs.unlinkSync(filepath + tutorial[0].tumb_image);
-      console.log("delete image success!");
     }
   );
 
@@ -47,7 +44,6 @@ module.exports = (req, res) => {
         if (err) {
           console.log(err.stack);
         }
-        console.log("success delete!");
         res.redirect("/editTutorial");
       }
     );

@@ -7,7 +7,6 @@ module.exports = (req, res) => {
   const id = crypto.randomBytes(16).toString("hex");
 
   if (req.notImage) {
-    console.log(req.notImage);
     req.flash("image", "not image");
     res.redirect("/create-course");
     return;
@@ -31,7 +30,6 @@ module.exports = (req, res) => {
     }
   );
   for (let i = 0; i < stepImg.length; i++) {
-    console.log(stepImg[i]);
     if (stepImg[i].originalname != "empty.jpeg") {
       database.query(
         "INSERT INTO step SET judul_step = ?, isi_table = ?, image = ?, lesson_id = ?",

@@ -56,7 +56,7 @@
                 <div class="carousel-container" id="kursus">
                     <button class="carousel-button" id="next-button" disabled>&lt;</button>
                     <div class="category-buttons">
-                        <% for (let i=1; i < genre.length; i++) { %>
+                        <% for (let i=0; i < genre.length; i++) { %>
                             <a href="/allcourses/<%= genre[i].tipe%>">
                                 <button>
                                     <%= genre[i].tipe%>
