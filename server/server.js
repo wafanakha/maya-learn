@@ -17,18 +17,7 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
 const path = require("path");
-
-database.query(
-  "SELECT * FROM user WHERE email = ?",
-  ["wafanakha17@gmail.com"],
-  (err, user) => {
-    if (err) {
-      console.log(err.stack);
-      return;
-    }
-    console.log(user[0]);
-  }
-);
+var validator = require("email-validator");
 
 app.set("view-engine", "ejs");
 
@@ -271,6 +260,12 @@ app.post(
 
 app.post("/profile", checkAuth, (req, res) => {
   const { name, email } = req.body;
+  console.log(validator.validate(email));
+  if (!validator.validate(email)) {
+    req.flash("emailnotValid", "Email yang anda masukkan tidak valid!");
+    res.redirect("/daftar");
+    return;
+  }
   database.query(
     "UPDATE user SET username = ?, email = ?",
     [name, email],
