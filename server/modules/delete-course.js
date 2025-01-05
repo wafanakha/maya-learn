@@ -13,9 +13,12 @@ module.exports = (req, res) => {
         console.log(err.stack);
         return;
       }
-      console.log(steps);
+
       steps.forEach((step) => {
-        fs.unlinkSync(filepath + step.image);
+        console.log(step);
+        if (step.image !== null) {
+          fs.unlinkSync(filepath + step.image);
+        }
       });
     }
   );
