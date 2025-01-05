@@ -263,7 +263,7 @@ app.post("/profile", checkAuth, (req, res) => {
   console.log(validator.validate(email));
   if (!validator.validate(email)) {
     req.flash("emailnotValid", "Email yang anda masukkan tidak valid!");
-    res.redirect("/daftar");
+    res.redirect("/profile");
     return;
   }
   database.query(
