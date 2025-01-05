@@ -97,11 +97,12 @@ app.get("/daftar", checkNotAuth, (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   database.query(
-    "SELECT tutorial.lesson_id, tutorial.judul, tutorial.tipe, tumb_image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id",
+    "SELECT t.lesson_id, t.judul, t.tipe, t.tumb_image, t.durasi, u.username FROM ( SELECT * FROM tutorial ORDER BY rand() LIMIT 3 ) AS t JOIN user AS u ON t.user_id = u.user_id;",
     (err, lessons) => {
       if (err) {
         console.log(err.stack);
       }
+      console.log(lessons);
       res.render("dashboard.ejs", {
         lessons: lessons,
         isauth: req.isAuthenticated(),
@@ -151,9 +152,41 @@ app.get("/allcourses", (req, res) => {
       if (err) {
         console.log(err.stack);
       }
-      res.render("allcourses.ejs", {
-        lessons: lessons,
-        isauth: req.isAuthenticated(),
+      database.query("SELECT DISTINCT tipe FROM tutorial", (err, genre) => {
+        if (err) {
+          console.log(err.stack);
+        }
+        console.log(genre[1]);
+        res.render("allcourses.ejs", {
+          lessons: lessons,
+          genre: genre,
+          isauth: req.isAuthenticated(),
+        });
+      });
+    }
+  );
+});
+
+app.get("/allcourses/:genre", (req, res) => {
+  const { genre } = req.params;
+  database.query(
+    "SELECT tutorial.lesson_id, tutorial.judul, tutorial.tipe, tumb_image, tutorial.durasi, user.username FROM tutorial JOIN user ON tutorial.user_id=user.user_id WHERE tipe=?",
+    [genre],
+    (err, lessons) => {
+      if (err) {
+        console.log(err.stack);
+      }
+      database.query("SELECT DISTINCT tipe FROM tutorial", (err, genre) => {
+        if (err) {
+          console.log(err.stack);
+        }
+        console.log(genre[1]);
+        console.log(lessons);
+        res.render("allcourses.ejs", {
+          lessons: lessons,
+          genre: genre,
+          isauth: req.isAuthenticated(),
+        });
       });
     }
   );

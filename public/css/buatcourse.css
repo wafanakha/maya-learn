@@ -170,6 +170,34 @@ nav {
   border-bottom: 2px solid #005f5f;
 }
 
+.form-radios {
+  margin: 20px;
+}
+
+legend {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.radios-group {
+  display: flex; /* Atur elemen berjajar horizontal */
+  gap: 20px; /* Beri jarak antar elemen */
+  flex-wrap: wrap; /* Bungkus elemen jika ruang tidak cukup */
+}
+
+label {
+  display: flex;
+  align-items: center; /* Sejajarkan teks dengan radio */
+  gap: 8px; /* Beri jarak antara radio dan teks */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin: 0;
+}
+
 /* Bagian Ringkasan */
 .ringkasan-section {
   background-color: white;
@@ -206,7 +234,6 @@ nav {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow untuk efek */
   padding: 20px;
   position: relative;
-
   margin: 20px 0;
 }
 
@@ -225,7 +252,6 @@ nav {
 
 .deskripsi-wrapper {
   position: relative;
-
   justify-content: center; /* Mengatur gambar di tengah secara horizontal */
   align-items: center; /* Mengatur gambar di tengah secara vertikal */
   text-align: center;

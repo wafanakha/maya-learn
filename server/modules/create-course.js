@@ -1,7 +1,7 @@
 const database = require("../../database/mysql.js");
 const crypto = require("crypto");
 module.exports = (req, res) => {
-  const { judul, type, durasi, ringkasan, stepTitle, stepText } = req.body;
+  const { judul, genre, durasi, ringkasan, stepTitle, stepText } = req.body;
   const { tumbnailImg, stepImg } = req.files;
 
   const id = crypto.randomBytes(16).toString("hex");
@@ -17,7 +17,7 @@ module.exports = (req, res) => {
     [
       id,
       judul,
-      type,
+      genre,
       durasi,
       ringkasan,
       tumbnailImg[0].filename,

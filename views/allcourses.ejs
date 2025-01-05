@@ -53,10 +53,24 @@
                 </ul>
             </nav>
             <% } %>
+                <div class="carousel-container" id="kursus">
+                    <button class="carousel-button" id="next-button" disabled>&lt;</button>
+                    <div class="category-buttons">
+                        <% for (let i=1; i < genre.length; i++) { %>
+                            <a href="/allcourses/<%= genre[i].tipe%>">
+                                <button>
+                                    <%= genre[i].tipe%>
+                                </button>
+                            </a>
+                            <% } %>
+
+                    </div>
+                    <button class="carousel-button" id="next-button" disabled>&gt;</button>
+                </div>
                 <div class="carousel">
                     <% lessons.forEach(lesson=> { %>
                         <a href="/coursedesc/<%=lesson.lesson_id%>" class="card">
-                            <img src="img/upload/<%=lesson.tumb_image %>" />
+                            <img src="/img/upload/<%=lesson.tumb_image %>" />
 
                             <div class=" card-content">
                                 <h3>
