@@ -42,7 +42,8 @@ module.exports = (req, res) => {
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(error);
-          res.status(500).send("Tidak bisa mengirim Email");
+          req.flash("err", "Error saat Mengirim Email");
+          res.redirect("/forgor");
         } else {
           console.log(`Email sent: ${info.response}`);
           req.flash(

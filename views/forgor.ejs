@@ -15,26 +15,29 @@
 </head>
 
 <body>
-  <dialog <%if(noSend.length || success.length> 0) { %> open <% } %>>
-      <% if(noSend.length> 0) {%>
-        <h2>
-          <%= noSend[0] %>
-        </h2>
-        <p>
-          Email akun anda tidak valid, ganti email akun anda!
-        </p>
-        <% } %>
-          <% if(success.length> 0) {%>
-            <article>
+  <dialog <%if(err.length || success.length || token.length> 0) { %> open <% } %>>
+      <article>
+        <% if(err.length> 0) {%>
+          <h2>
+            <%= err[0] %>
+          </h2>
+          <% } %>
+            <% if(success.length> 0) {%>
               <h2>Email Dikirim!</h2>
               <p>
                 <%= success[0] %>
               </p>
               <% } %>
-                <footer>
-                  <button autofocus onclick="toggleModal(event)">OK</button>
-                </footer>
-            </article>
+                <% if(token.length> 0) {%>
+                  <h2>
+                    <%= token[0] %>
+                  </h2>
+
+                  <% } %>
+                    <footer>
+                      <button autofocus onclick="toggleModal(event)">OK</button>
+                    </footer>
+      </article>
   </dialog>
   <nav>
     <div class="logo-section">

@@ -11,7 +11,8 @@ module.exports = (req, res) => {
     if (user != undefined) {
       res.render("reset.ejs", { token: token });
     } else {
-      res.status(404).send("Token Invalid atau Expired");
+      req.flash("token", "link reset password sudah tidak valid!");
+      res.redirect("/forgor");
     }
   });
 };

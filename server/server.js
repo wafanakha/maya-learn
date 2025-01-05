@@ -83,7 +83,8 @@ app.get("/forgor", checkNotAuth, (req, res) => {
   res.render("forgor.ejs", {
     success: req.flash("success"),
     email: req.flash("email"),
-    noSend: req.flash("noSend"),
+    err: req.flash("err"),
+    token: req.flash("token"),
   });
 });
 
