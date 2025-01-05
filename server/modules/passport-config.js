@@ -21,7 +21,6 @@ function initialize(passport) {
             message: "email",
           });
         }
-        console.log(user);
 
         try {
           if (await bcrypt.compare(password, user.password)) {

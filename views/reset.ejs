@@ -12,6 +12,16 @@
 </head>
 
 <body>
+  <dialog <%if(pass.length> 0) { %> open <% } %>>
+      <article>
+        <h2>
+          <%= pass[0] %>
+        </h2>
+        <footer>
+          <button autofocus onclick="toggleModal(event)">OK</button>
+        </footer>
+      </article>
+  </dialog>
   <nav>
     <div class="logo-section">
       <a href="/dashboard">

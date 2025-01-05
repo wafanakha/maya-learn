@@ -292,7 +292,6 @@ app.get("/reset/:token", (req, res) => {
 });
 
 app.post("/reset/", (req, res) => {
-  console.log(req.body);
   reset(req, res);
 });
 

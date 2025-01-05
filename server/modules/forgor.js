@@ -10,7 +10,6 @@ module.exports = (req, res) => {
       return;
     }
     user = user[0];
-    console.log(user);
     if (user != undefined) {
       const token = crypto.randomBytes(20).toString("hex");
       database.query(
@@ -21,7 +20,6 @@ module.exports = (req, res) => {
             console.log(err.stack);
             return;
           }
-          console.log("token success");
         }
       );
       const transporter = nodeMailer.createTransport({
@@ -44,7 +42,6 @@ module.exports = (req, res) => {
           req.flash("err", "Error saat Mengirim Email");
           res.redirect("/forgor");
         } else {
-          console.log(`Email sent: ${info.response}`);
           req.flash(
             "success",
             "Link reset password sudah dikirim melalui email anda!"

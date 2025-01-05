@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     }
     user = user[0];
     if (user != undefined) {
-      res.render("reset.ejs", { token: token });
+      res.render("reset.ejs", { token: token, pass: req.flash("password") });
     } else {
       req.flash("token", "link reset password sudah tidak valid!");
       res.redirect("/forgor");
